@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HllcInfoMapper">
+
+	<!-- 查询所有婚礼子流程列表 -->
+	<select id="listInfo" parameterType="pd" resultType="pd">
+	
+		select id,hllcid,startTime,info,person,state
+			from 
+				tb_hllc_info
+			where 1=1 
+			and hllcid in (
+				select id
+			from 
+				tb_hllc
+			where 1=1 
+			<if test="pd.userid !=null and pd.userid !='' ">
+				and userid = #{pd.userid}
+			</if> 
+			<if test="pd.id !=null and pd.id!='' ">
+				and id = #{pd.id}
+			</if> 
+			   and state = #{pd.state}
+		)
+		   and state = #{pd.infoState}
+		   
+		   order by startTime
+	</select>
+	
+	<!--增加婚礼子流程  -->
+	<insert id="save" parameterType="pd">
+		insert into tb_hllc_info(
+			id,
+			hllcid,
+			startTime,
+			info,
+			person,
+			state
+		)values(
+			#{id},
+			#{hllcid},
+			#{startTime},
+			#{info},
+			#{person},
+			#{state}
+		)
+	</insert>
+	
+	<!--修改婚礼子流程  -->
+	<update id="edit" parameterType="pd">
+		update tb_hllc_info set startTime =#{startTime},info=#{info},person=#{person},hllcid=#{hllcid} where id =#{id}
+	</update>
+	
+	<!--根据id查询单个  -->
+	<select id="gethllcInfo" parameterType="pd" resultType="pd">
+		select id,
+			hllcid,
+			startTime,
+			info,
+			person,
+			state
+		 from tb_hllc_info where id =#{id}
+	</select>
+	
+	<!--根据hllcId删除  -->
+	<delete id="deleteHllcInfoByHllcId" parameterType="pd">
+		delete from tb_hllc_info where hllcid=#{hllcid}
+	</delete>
+	
+	<!--根据id删除  -->
+	<delete id="deleteHllcInfo" parameterType="pd">
+		delete from tb_hllc_info where id=#{id}
+	</delete>
+</mapper>

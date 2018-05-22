@@ -1,0 +1,4 @@
+redis.server.url=121.40.194.154
+#redis.server.url=10.1.1.78
+redis.server.port=6379
+redis.server.pwd=hdredis123

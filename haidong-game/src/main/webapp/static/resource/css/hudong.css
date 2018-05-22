@@ -1,0 +1,203 @@
+.card-warp {
+	margin-top: 90px;
+	perspective: 800px;
+	position: relative;
+}
+
+.card-warp li{position: absolute;top: 0;left: 520px;}
+
+.card-item {
+	width: 200px;
+	height: 375px;
+	position: relative;
+	float: left;
+	padding: 10px;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+	margin: 20px;
+	cursor: pointer;
+/*	transform: perspective(500px) rotateY(-15deg);*/
+}
+
+.card-item-front {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+
+.card-item-back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: rotateY( 180deg);
+}
+
+.card-item.flipped {
+	transform: rotateY( 180deg);
+}
+
+.card-item.return {
+	transform: rotateY( 0deg);
+}
+
+.hudong-wait {
+	position: absolute;
+	left: 150px;
+	bottom: 100px;
+	text-align: center;
+}
+
+.hudong-wait-people {
+	color: #FFFFFF;
+	font-size: 25px;
+	padding: 20px 20px 20px 150px;
+	display: block;
+	text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+}
+
+.hudong-wait-people-num {
+	color: yellow;
+	font-size: 30px;
+}
+
+.hudong-wait-warp {
+	position: relative;
+}
+
+.hudong-content-warp {
+	float: right;
+	height: 495px;
+	width: 750px;
+	background-image: url(../img/hudng/WAIK.png);
+	background-size: 100%;
+}
+
+.hudong-content-warp .rc {
+	padding: 130px 10px 10px 10px;
+}
+
+.hudong-content-warp .lc {}
+
+.peidui {
+	position: relative;
+	padding: 160px 50px 10px 50px
+}
+
+.peidui img {
+	vertical-align: middle;
+	margin: 5px;
+}
+
+.peiduizuhe {
+	width: 320px;
+	height: 95px;
+	border: 3px solid #FDD156;
+	border-radius: 30px;
+	margin-top: 15px;
+	background-color: rgba(253, 209, 86, 0.2);
+	padding: 5px 0 0 10px;
+	position: relative;
+}
+
+.peiduizuhe img {
+	vertical-align: middle;
+	margin: 5px;
+}
+
+.hudong-user {
+	position: absolute;
+	color: #fff;
+	width: 150px;
+	text-align: center;
+	font-size: 15px;
+}
+
+#hudonguser1 {
+	left: 30px;
+	top: 250px;
+}
+
+#hudonguser2 {
+	left: 220px;
+	top: 250px;
+}
+
+#btn-peidui {
+	margin-left: 90px;
+	/*margin-top: 30px;*/
+	cursor: pointer;
+	height: 100px;
+}
+
+#btn-peidui-rest{
+	margin-left: 90px;
+/*	margin-top: 30px;*/
+	cursor: pointer;
+	height: 100px;
+}
+
+.zuhe-hudong-user1 {
+	position: absolute;
+	color: #fff;
+	width: 100px;
+	text-align: center;
+	font-size: 13px;
+	left: 50px;
+    top: 72px;
+}
+
+.zuhe-hudong-user2 {
+	position: absolute;
+	color: #fff;
+	width: 100px;
+	text-align: center;
+	font-size: 13px;
+		left: 190px;
+    top: 72px;
+    opacity: ;
+}
+
+
+.hudonguser1-img{
+	position: absolute;
+    left: 62px;
+    height: 68px;
+    width: 68px;
+    top: 166px;
+    border-radius: 50%;
+}
+
+
+.hudonguser2-img{
+	position: absolute;
+    left: 249px;
+    height: 68px;
+    width: 68px;
+    top: 166px;
+	border-radius: 50%;
+}
+
+
+
+
+.lucky-item{
+	box-sizing: content-box;
+	padding: 5px 7px;
+	width: 65px;
+		float: left;
+}
+
+.lucky-username{
+	color: #fff;
+	width: 65px;
+	display: block;
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AccountMapper">
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_account(
+			id,	
+			userId,	
+			totalfee,	
+			outtradeno,
+			type,
+			cashNumber,
+			state,
+			timeend,
+			payChannel,
+			paytype,
+			moneytype
+		) values (
+			#{id},	
+			#{userId},	
+			#{totalfee},	
+			#{outtradeno},
+			#{type},
+			#{cashNumber},
+			#{state},
+			#{timeend},
+			#{payChannel},
+			#{paytype},
+			#{moneytype}
+		)
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="pd">
+		update  tb_account
+			set 
+				timeend = #{timeend},
+				state =#{state}
+			where 
+				outtradeno = #{outtradeno}
+	</update>
+	
+	<!-- 通过findByoutradeno获取数据 -->
+	<select id="findByoutradeno" parameterType="pd" resultType="pd">
+		select 
+			id,userId,totalfee,moneytype
+		from 
+			tb_account
+		where 
+			outtradeno = #{outtradeno}
+	</select>
+	
+	<!-- 通过findByShopOrderId获取数据 -->
+	<select id="findByShopOrderId" parameterType="pd" resultType="pd">
+		select 
+			id,userId
+		from 
+			tb_account
+		where 
+			shopOrderId = #{shopOrderId}
+			and state= 1
+			
+	</select>
+	
+		<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select 
+			id,	
+			(SELECT nickname from tb_wechatinfo where USER_ID=userId)AS username,
+			<!-- userId,	 -->
+			totalfee,	
+			outtradeno,
+			type,
+			cashNumber,
+			state,
+			DATE_FORMAT(timestart,'%Y-%m-%d %H:%i:%s') timestart,
+			DATE_FORMAT(timeend,'%Y-%m-%d %H:%i:%s') timeend,
+			payChannel,
+			paytype,
+			moneytype
+			from tb_account
+	<!-- 	where 
+		userId = #{pd.USER_ID} and type=#{pd.type} -->
+		order by timestart desc
+	</select>
+	
+	<update id="updateOrder" parameterType="pd">
+		update tb_account set state=1,timeend=#{timeend}  where  outtradeno=#{outtradeno} and type=3
+		and userId=#{userId}
+	</update>
+
+</mapper>

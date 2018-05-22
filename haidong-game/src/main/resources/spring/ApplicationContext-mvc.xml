@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd" >
+       
+	
+    <mvc:annotation-driven>
+		<!-- 消息转换器(处理ajax请求返回数据中文乱码) -->
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/html;charset=UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+    
+	<mvc:default-servlet-handler/>
+	<context:component-scan base-package="com.huixin" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<!-- 对静态资源文件的访问  restful-->   
+	<mvc:default-servlet-handler />  
+	<mvc:resources mapping="/static/**" location="/,/static/" />
+	
+	<!-- 配置SpringMVC的视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="40960"></property>  
+    </bean>
+	
+	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 输出对象转JSON支持 -->
+	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringConverter" />
+				<ref bean="jsonConverter" />
+			</list>
+		</property>
+	</bean>
+	
+	<mvc:interceptors> 
+	   <!--  <mvc:interceptor>
+	   		  <mvc:mapping path="/**"/>
+	     		<bean class="com.huixin.haidong.business.interceptor.TestIntercepor"></bean>
+	     	
+	     </mvc:interceptor>    -->
+	   <mvc:interceptor>    
+	         <mvc:mapping path="/**"/>
+	         <mvc:exclude-mapping path="/static/**"/>
+	         <mvc:exclude-mapping path="/box/login"/>
+	         <mvc:exclude-mapping path="/box/directLogin"/>
+	        <bean class="com.huixin.haidong.business.interceptor.LoginHandlerInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors> 
+</beans>

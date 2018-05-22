@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace= "GameMapper">
+    
+    
+	<select id="queryAll" parameterType="pd" resultType="pd">
+	    select
+	        liveid,
+	        rock_time,
+	        rock_award_count,
+	        tugofwar_time,
+	        tugofwar_award_count,
+	        tugofwar_count,
+	        countmoney_time,
+	        countmoney_award_count,
+	        turntable_ content1,
+	        turntable_ content2,
+	        turntable_ content3,
+	        turntable_ content4,
+	        turntable_ content5,
+	        turntable_ content6,
+	        turntable_ content7,
+	        turntable_ content8
+	    from
+	        tb_game_setting
+	     where
+	         liveid = #{liveid} 
+	</select>
+
+
+	<select id="findById" parameterType="pd" resultType="pd">
+	    select
+	        liveid,
+	        rock_time,
+	        rock_award_count,
+	        tugofwar_time,
+	        tugofwar_award_count,
+	        tugofwar_count,
+	        countmoney_time,
+	        countmoney_award_count,
+	        turntable_content1,
+	        turntable_content2,
+	        turntable_content3,
+	        turntable_content4,
+	        turntable_content5,
+	        turntable_content6,
+	        turntable_content7,
+	        turntable_content8
+	    from
+	        tb_game_setting
+	     where
+	         liveid = #{liveid} 
+	</select>
+
+</mapper>

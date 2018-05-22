@@ -1,0 +1,89 @@
+.gift-huajia{height:1080px;width:1920px;position:absolute;left:0;top:0;overflow:hidden;pointer-events:none;z-index:900}
+.gift-huajia-warp{width:100%;height:100%;position:relative;overflow:hidden}
+.huajia-ground{position:absolute;bottom:250px;left:-1600px}
+.huajia-man{position:absolute;bottom:300px;right:-494px}
+.huajia-heart{position:absolute;left:500px;top:200px;opacity:0}
+.huajia-ground-move{animation-name:huajia-ground-move;animation-timing-function:linear;animation-duration:7s}
+.huajia-man-move{animation-name:huajia-man-move;animation-timing-function:linear;animation-duration:7s}
+.huajia-heart-move{animation-name:huajia-heart-move;animation-timing-function:linear;animation-duration:7s}
+@keyframes huajia-heart-move{0%{transform:scale(0);opacity:0}
+20%{transform:scale(0);opacity:0}
+40%{transform:scale(0);opacity:1}
+60%{transform:scale(.8);opacity:1}
+80%{transform:scale(.9);opacity:1}
+100%{transform:scale(1);opacity:0}
+}
+@keyframes huajia-ground-move{0%{transform:translateX(0);opacity:0}
+20%{transform:translateX(1650px);opacity:1}
+40%{transform:translateX(1700px);opacity:1}
+60%{transform:translateX(1750px);opacity:1}
+80%{transform:translateX(1780px);opacity:1}
+100%{transform:translateX(1800px);opacity:0}
+}
+@keyframes huajia-man-move{0%{transform:translateX(0);opacity:0}
+20%{transform:translateX(-1200px);opacity:1}
+40%{transform:translateX(-1250px);opacity:1}
+60%{transform:translateX(-1300px);opacity:1}
+80%{transform:translateX(-1320px);opacity:1}
+100%{transform:translateX(-1350px);opacity:0}
+}
+
+.gift-sansheng{height:1080px;width:1920px;position:absolute;top:0;left:0;overflow:hidden;z-index:900;pointer-events:none}
+.gift-sansheng-warp{position:relative;width:100%;height:100%;overflow:hidden}
+.tree{position:absolute;bottom:250px;left:-1000px}
+.san-people{position:absolute;bottom:200px;right:-500px}
+.text{position:absolute;right:300px;top:-277px}
+.flower{height:100%;width:100%;position:relative}
+.flower .f{position:absolute;top:100px;height:100px;width:100px}
+.flower .f .r{animation-name:flower-roate;animation-timing-function:linear;animation-duration:1s;animation-iteration-count:infinite}
+@keyframes flower-roate{from{transform:rotate(0)}
+to{transform:rotate(360deg)}
+}
+.people-move{animation-name:people-move;animation-timing-function:linear;animation-duration:7s}
+.tree-move{animation-name:tree-move;animation-timing-function:linear;animation-duration:7s}
+.text-move{animation-name:text-move;animation-timing-function:linear;animation-duration:7s}
+@keyframes text-move{0%{transform:translateY(0);opacity:0}
+20%{transform:translateY(0);opacity:1}
+40%{transform:translateY(600px);opacity:1}
+60%{transform:translateY(677px);opacity:1}
+80%{transform:translateY(677px);opacity:1}
+100%{transform:translateY(677px);opacity:0}
+}
+@keyframes tree-move{0%{transform:translateX(0);opacity:0}
+20%{transform:translateX(1400px);opacity:1}
+40%{transform:translateX(1450px);opacity:1}
+60%{transform:translateX(1500px);opacity:1}
+80%{transform:translateX(1550px);opacity:1}
+100%{transform:translateX(1600px);opacity:0}
+}
+@keyframes people-move{0%{transform:translateX(0);opacity:0}
+20%{transform:translateX(-800px);opacity:1}
+40%{transform:translateX(-850px);opacity:1}
+60%{transform:translateX(-900px);opacity:1}
+80%{transform:translateX(-950px);opacity:1}
+100%{transform:translateX(-1000px);opacity:0}
+}
+
+/*guess superstar*/ .guess-warp{width:1500px;height:750px;background-color:rgba(202,172,84,.8);border:3px solid #feff00;border-radius:20px;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto}
+.guess-title{position:absolute;top:-100px;left:705px}
+.star-warp{height:586px;width:470px;border:2px solid #fcd04d;border-radius:20px;margin-left:150px;margin-top:80px;float:left;background-color:#cdcdcd;background-repeat:no-repeat;background-size:100%;background-image:url(../img/guess/default.png)}
+.star-warp img{height:100%;width:100%}
+.start-control-warp{text-align:center;height:586px;width:470px;float:left;margin-top:80px;margin-left:183px;position:relative}
+.guess-continue{margin-top:150px;cursor:pointer;display:none}
+.guess-answer{margin-top:30px;cursor:pointer;display:none}
+.guess-start{margin-top:150px;cursor:pointer}
+.guess-rechoose{margin-top:293px;cursor:pointer;display:none}
+.star-btn{position:absolute;bottom:0;width:100%}
+.star-btn img:first-child{padding:0 30px;cursor:pointer}
+.star-btn img:last-child{padding:0 30px;cursor:pointer}
+.star-btn img:nth-child(2){padding:0 10px;cursor:pointer}
+.guess-deng{position:absolute;left:-47px;width:1580px;height:828px;top:-45px;overflow:hidden;pointer-events:none}
+.guess-deng img{height:828px;width:100%}
+.guess-deng-move{animation-name:guess-deng-move;animation-timing-function:steps(2);animation-duration:.8s;animation-iteration-count:infinite}
+@keyframes guess-deng-move{from{transform:translateY(0)}
+to{transform:translateY(-100%)}
+}
+
+
+
+

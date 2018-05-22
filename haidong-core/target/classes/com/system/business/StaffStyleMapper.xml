@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StaffStyleMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_staff_style(
+			staff_name,
+			staff_positional,
+			img_original_name,	
+			staff_desc,
+			img_url,
+			img_name,
+			live_id,
+			id
+		) values (
+			#{staff_name},	
+			#{staff_positional},
+			#{img_original_name},	
+			#{staff_desc},	
+			#{img_url},
+			#{img_name},
+			#{live_id},
+			#{id}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_staff_style
+		where 
+			id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_staff_style
+			set 
+				staff_name = #{staff_name},
+				staff_positional = #{staff_positional},
+				staff_desc = #{staff_desc}
+			where 
+				id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			staff_name,
+			staff_positional,
+			img_original_name,	
+			staff_desc,	
+			img_url,	
+			img_name,	
+			live_id,	
+			id
+		from 
+			tb_staff_style
+		where 
+			id = #{id}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.staff_name,
+				a.staff_positional,
+				a.img_original_name,	
+				a.staff_desc,	
+				a.img_url,	
+				a.img_name,	
+				a.live_id,	
+				id
+		from 
+				tb_staff_style a
+		where 
+				a.live_id = #{pd.live_id}
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAllByLiveId" parameterType="pd" resultType="pd">
+		select
+				a.staff_name,
+				a.staff_positional,
+				a.img_original_name,	
+				a.staff_desc,	
+				a.img_url,	
+				a.img_name,	
+				a.live_id,	
+				a.id
+		from 
+				tb_staff_style a
+		where
+				a.live_id = #{live_id} order by a.create_time
+	</select>
+	
+</mapper>

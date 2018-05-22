@@ -1,0 +1,197 @@
+/*
+ *手机互动游戏样式  2017-02-23
+ */
+.game-menu.active{display:block}
+.game-menu.hide{display:none}
+.game-menu ul{margin:0;}
+.game-menu ul li{list-style:none;width:20%;position:relative;float:left;cursor:pointer}
+.game-menu ul li img{width:100%}
+.game-menu ul li .gameimg{position:absolute;width:75%;top:17%;left:12%;border-radius:35px}
+
+
+.game-head{
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	border-radius: 100px;
+	border: 2px solid #FFF600;
+	top: 0;
+	left: 0;
+}
+
+/*zhushi*/
+
+.game-wait{width: 100%;height: 100%;padding-left: 25px;}
+.game-content{width: 100%;height: 100%;padding: 70px 0;}
+
+.game-wait-people{color:#FFF;font-size:25px;padding:5px;display:block;text-shadow:3px 3px 3px rgba(0,0,0,.8);text-align: center;}
+ .game-wait-people-num{font-size: 35px;color:#ff0;}
+@media screen and (min-width:1600px){
+  	 .game-wait-people-num{font-size: 45px;}
+    .game-wait-people{font-size: 35px;}
+}
+
+.game-wait-warp{position:relative;margin: auto 0;}
+
+.leda{width: 40%;float: left;position: absolute;}
+.leidaimg{width: 100%;}
+.leida-sao {position: absolute;left: 0; top: 0;}
+
+.leida-roate{
+	animation: leidasao 5s linear infinite;
+	-webkit-animation: leidasao 5s linear infinite;
+}
+
+.leida-roate-slow{
+	animation: leidaslow 60s linear infinite;
+	-webkit-animation: leidaslow 60s linear infinite;
+}
+
+
+@keyframes leidaslow{from{transform:rotate(360deg);transform-origin:center center}
+to{transform:rotate(0);transform-origin:center center}
+}
+@-webkit-keyframes leidaslow{from{-webkit-transform:rotate(360deg);-webkit-transform-origin:center center}
+to{-webkit-transform:rotate(0);-webkit-transform-origin:center center}
+}
+@keyframes leidasao{from{transform:rotate(0);transform-origin:center center}
+to{transform:rotate(360deg);transform-origin:center center}
+}
+@-webkit-keyframes leidasao{from{-webkit-transform:rotate(0);-webkit-transform-origin:center center}
+to{-webkit-transform:rotate(360deg);-webkit-transform-origin:center center}
+}
+
+
+
+.game-rank {
+    position: absolute;
+    right: 10px;
+   /* top: 70px;*/
+}
+
+.rank-item:first-child {
+    margin-top: 0;
+}
+.paiming {
+    position: absolute;
+    left: -25px;
+    top: 18px;
+}
+
+.rank-head {
+    position: absolute;
+    left: 30px;
+    top: 8px;
+}
+
+.rank-headimg {
+    position: absolute;
+    left: 40px;
+    top: 13px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+}
+
+.rank-name {
+    position: absolute;
+    left: 110px;
+    top: 10px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.rank-point {
+    position: absolute;
+    left: 110px;
+    top: 40px;
+    font-size: 22px;
+    color: #ffd24d;
+}
+
+.rank-point {
+    position: absolute;
+    left: 110px;
+    top: 40px;
+    font-size: 22px;
+    color: #ffd24d;
+}
+
+.rank-item {
+    height: 80px;
+    width: 360px;
+    border: 2px solid #ffd24d;
+    border-radius: 50px;
+    margin-top: 14px;
+    background-color: rgba(57, 57, 57, 0.80);
+    position: relative;
+}
+
+.jiangbei {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+
+.rank-result {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 900;
+}
+
+.rank-result-place {
+	height: 550px;
+	width: 474px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.rank-result-place img {
+	position: absolute;
+}
+
+.rank-result-item {
+	height: 80px;
+	width: 280px;
+	border: 2px solid #ffd24d;
+	border-radius: 50px;
+	margin-top: 14px;
+	background-color: rgba(57, 57, 57, 0.80);
+	position: relative;
+	margin: 145px auto 0 auto;
+}
+
+.rank-result-item:nth-child(3) {
+	margin-top: 18px;
+}
+
+.rank-result-item:nth-child(2){
+		margin-top: 18px;
+}
+
+
+.rank-result-item:nth-child(4) {
+	margin-top: 18px;
+}
+
+.result-paiming {
+	position: absolute;
+	left: -25px;
+	top: 18px;
+}
+
+.rank-result-close {
+	padding: 5px;
+	right: 0;
+	top: 0;
+}
+
+

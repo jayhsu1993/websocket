@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BaitiaoMapper">
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_baitiao(
+			id,	
+			userid,	
+			idcard,	
+			realname,
+			gjjin,
+			telnumber,
+			idcardimg1,
+			idcardimg2,
+			state
+		) values (
+			#{id},	
+			#{USER_ID},	
+			#{idcard},	
+			#{realname},
+			#{gjjin},
+			#{telnumber},
+			#{idcardimg1},
+			#{idcardimg2},
+			#{state}
+		)
+	</insert>
+	
+	<select id="reloadbaitiao"  parameterType="pd" resultType="pd">
+		select  * from  tb_baitiao 	where userid = #{USER_ID}
+	</select>
+</mapper>

@@ -1,0 +1,37 @@
+
+
+#============================================================================
+# MySQL admin
+#============================================================================
+#jdbc.mysql.admin.url:jdbc:mysql://192.168.1.121:3306/haidong_admin?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+#jdbc.mysql.driverClassName:com.mysql.jdbc.Driver
+#jdbc.mysql.admin.username:haidong
+#jdbc.mysql.admin.password:haidong
+
+jdbc.mysql.admin.url:jdbc:mysql://121.40.194.154:3306/haidong_uat?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+jdbc.mysql.driverClassName:com.mysql.jdbc.Driver
+jdbc.mysql.admin.username:haidong
+jdbc.mysql.admin.password:pwdhaidong@
+
+
+       
+filters:stat
+   
+maxActive:20
+initialSize:1
+maxWait:60000
+minIdle:10
+maxIdle:15
+   
+timeBetweenEvictionRunsMillis:60000
+minEvictableIdleTimeMillis:300000
+   
+validationQuery:SELECT 'x'
+testWhileIdle:true
+testOnBorrow:false
+testOnReturn:false
+
+maxOpenPreparedStatements:20
+removeAbandoned:true
+removeAbandonedTimeout:1800
+logAbandoned:true

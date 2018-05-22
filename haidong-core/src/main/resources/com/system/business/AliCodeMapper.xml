@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AliCodeMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_alicode(
+			phone,	
+			model,	
+			id,
+			create_user,
+			status,
+			type,
+			code
+		) values (
+			#{phone},	
+			#{model},	
+			#{id},
+			#{create_user},
+			#{status},
+			#{type},
+			#{code}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_alicode
+		where 
+			id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_alicode
+			set 
+				status = #{status}
+			where 1 = 1
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="phone != null and phone != ''">
+				and phone = #{phone}
+			</if>
+			<if test="model != null and model != ''">
+				and model = #{model}
+			</if>
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			phone,	
+			model,	
+			id,
+			status,
+			code
+		from 
+			tb_alicode
+		where 1 = 1
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="phone != null and phone != ''">
+			and phone = #{phone}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="model != null and model != ''">
+			and model = #{model}
+		</if>
+		<if test="type != null and type != ''">
+			and type = #{type}
+		</if>
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.phone,	
+				a.model,	
+				a.id as tid,
+				a.status,
+				a.code
+		from 
+				tb_alicode a
+		where 1 = 1
+		<if test="pd.id != null and pd.id != ''">
+			and id = #{id}
+		</if>
+		<if test="pd.phone != null and pd.phone != ''">
+			and phone = #{phone}
+		</if>
+		<if test="pd.status != null and pd.status != ''">
+			and status = #{pd.status}
+		</if>
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select 
+			phone,	
+			model,	
+			id,
+			status,
+			code
+		from 
+			tb_alicode
+		where 1 = 1
+		<if test="id != null and id != ''">
+			and id = #{id}
+		</if>
+		<if test="phone != null and phone != ''">
+			and phone = #{phone}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+		<if test="model != null and model != ''">
+			and model = #{model}
+		</if>
+	</select>
+	
+		<!-- 修改 -->
+	<update id="updateByPhone" parameterType="pd">
+		update  tb_alicode
+			set 
+				status = #{status}
+			where 
+			  phone = #{phone}
+			  and 
+			  id != #{id}
+	</update>
+</mapper>

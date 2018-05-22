@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InvitationsInfoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="saveInvitationsInfo" parameterType="pd">
+		insert into tb_invitations_info(
+			id,	
+			invitations_id,	
+			name,	
+			person,	
+			info,	
+			state,	
+			telnumber,
+			unionid
+		) values (
+			#{id},	
+			#{invitations_id},	
+			#{name},	
+			#{person},	
+			#{info},	
+			#{state},	
+			#{telnumber},
+			#{unionid}	
+		)
+	</insert>
+	
+	
+	
+	<!-- 修改 -->
+	<update id="editInvitationsInfo" parameterType="pd">
+	 update tb_invitations_info 
+	  set name = #{name},
+	      person = #{person},
+	      info = #{info},
+	      telnumber = #{telnumber}
+	  where id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findBytelNumber" parameterType="pd" resultType="pd">
+		select * from tb_invitations_info i 
+			where  i.invitations_id in 
+				(select t.id from tb_invitations t where  t.create_user = #{USER_ID})
+			and  i.telnumber = #{telnumber}
+	</select>
+	
+	
+	<!-- 通过关联ID获取创建微喜帖用户的groupId -->
+	<select id="findInviteGroupId" parameterType="pd" resultType="pd">
+		select 
+		 	c.id groupId 
+		 from tb_invitations b,tb_group c
+ 		where   
+ 			b.create_user = c.USER_ID 
+ 		and b.id =  #{invitations_id}
+	</select>
+	
+	<select id ="datalistPage" parameterType="page" resultType="pd">
+		select * from tb_invitations_info i 
+			where  i.invitations_id in 
+				(select t.id from tb_invitations t where  t.create_user = #{pd.USER_ID})
+	</select>
+	<select id="selectInvitionsItemTotalPerson" parameterType="pd" resultType="pd">
+	  	select sum(i.person) totalPerson FROM tb_invitations_info i
+	 	    where  i.invitations_id in 
+				(select t.id from tb_invitations t where  t.create_user = #{USER_ID})
+	</select>
+	
+	<select id ="selectInvitionsItemByUnionid" parameterType="page" resultType="pd">
+		select * from tb_invitations_info i 
+			where  i.unionid = #{unionid} and i.invitations_id = #{invitations_id}
+	</select>
+	
+	<delete id="deleteInvitationsInfo" parameterType="pd" >
+		delete  from tb_invitations_info where invitations_id = #{invitations_id}
+	</delete>
+</mapper>

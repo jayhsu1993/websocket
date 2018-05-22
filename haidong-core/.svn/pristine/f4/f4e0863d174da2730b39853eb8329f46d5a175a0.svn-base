@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PrizeMapper">	
+	
+	 <!-- 列表 -->
+	<select id="datalist" parameterType="pd" resultType="pd">
+		select
+				username,
+				head_img,
+				prize,
+				remark,
+				prize_id
+		from 
+				tb_live_prize 
+				
+		where   
+				liveid=#{liveid}		
+	</select> 
+
+</mapper>

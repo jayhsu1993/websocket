@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syncparticipants>
+<participant displayName="SVN (/haidong, /haidong-core, /haidong-domain, /haidong-framework, /haidong-service, /haidong-serviceimpl)" id="org.tigris.subversion.subclipse.participant" secondary_id="1526958631743">
+<data root="false">
+<org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS org.eclipse.team.ui.SCOPE_TYPE="ResourceScope">
+<org.eclipse.team.ui.TEAMSUBSRCIBER_REFRESHSCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_RUNONCE="false"/>
+<resource_scope_roots resource_scope_root_resource="/haidong"/>
+<resource_scope_roots resource_scope_root_resource="/haidong-core"/>
+<resource_scope_roots resource_scope_root_resource="/haidong-domain"/>
+<resource_scope_roots resource_scope_root_resource="/haidong-framework"/>
+<resource_scope_roots resource_scope_root_resource="/haidong-service"/>
+<resource_scope_roots resource_scope_root_resource="/haidong-serviceimpl"/>
+</org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS>
+</data>
+</participant>
+</syncparticipants>

@@ -1,0 +1,7 @@
+.dzp-warp{position:absolute;top:80px;width:550px;height:550px;margin:auto;left:0;right:0;bottom:0;top:0}
+.content .wheel{display:block;width:550px;height:550px;position:relative;background-image:url(../img/dzp/PAN-01.png);background-size:100% 100%}
+.content .wheel canvas.item{width:490px;position:absolute;left:30px;top:30px}
+.content .wheel img.pointer{position:absolute;width:31.5%;height:42.5%;left:34.3%;top:23%}
+.dzp-gift1{position:absolute;bottom:0;left:-50px}
+.dzp-gift2{position:absolute;bottom:0;right:-50px}
+.dzp-btn{position:absolute;left:43.9%;top:43%;pointer-events:none}

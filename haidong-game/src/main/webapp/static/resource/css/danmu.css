@@ -1,0 +1,176 @@
+.danmu-item {
+	position: absolute;
+	left: 1280px;
+	white-space: nowrap;
+}
+
+.danmu-item img {
+	height: 65px;
+}
+
+.jianbian {
+	background: linear-gradient(0deg, rgba(255, 94, 113, 1), rgba(255, 94, 113, 0.1));
+	background: -webkit-linear-gradient(0deg, rgba(255, 94, 113, 1), rgba(255, 94, 113, 0.1));
+}
+
+@keyframes hongbao-fly {
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: 390px;
+	}
+}
+
+@-webket-keyframes hongbao-fly {
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: 390px;
+	}
+}
+
+.danmu-hongbao {
+	height: 65px;
+	width: 60px;
+	position: absolute;
+	right: 10px;
+	top: -15px;
+	background-image: url(../img/hongbaofly.png);
+	background-size: auto 100%;
+	/*background-position-x: 390px;*/
+}
+
+.danmu-hongbao-fly {
+	animation: hongbao-fly 0.7s infinite steps(6);
+	-webkit-animation: hongbao-fly 0.7s infinite steps(6);
+}
+
+@-webkit-keyframes danmumove {
+	from {
+		-webkit-transform: translateX(0px)
+	}
+	to {
+		-webkit-transform: translateX(-1980px)
+	}
+}
+
+@keyframes danmumove {
+	from {
+		transform: translateX(0px)
+	}
+	to {
+		transform: translateX(-1980px)
+	}
+}
+
+.danmumove {
+	animation: danmumove 15s linear forwards;
+	-webkit-animation: danmumove 15s linear forwards;
+}
+
+
+/*UFO 红包*/
+
+.hb-ufo {
+	position: absolute;
+	left: 0;
+	top: 20%;
+}
+
+.ufo {
+	animation: ufofloat 1s linear infinite;
+	-webkit-animation: ufofloat 1s linear infinite;
+}
+
+@keyframes ufofloat {
+	0% {
+		transform: translateY(5px)
+	}
+	50% {
+		transform: translateY(-5px)
+	}
+	100% {
+		transform: translateY(5px)
+	}
+}
+
+@-webkit-keyframes ufofloat {
+	0% {
+		-webkit-transform: translateY(5px)
+	}
+	50% {
+		-webkit-transform: translateY(-5px)
+	}
+	100% {
+		-webkit-transform: translateY(5px)
+	}
+}
+
+@-webkit-keyframes ufomove {
+	from {
+		-webkit-transform: translateX(0px)
+	}
+	to {
+		-webkit-transform: translateX(-1580px)
+	}
+}
+
+@keyframes ufomove {
+	from {
+		transform: translateX(0px)
+	}
+	to {
+		transform: translateX(-1580px)
+	}
+}
+
+.ufomove {
+	animation: ufomove 15s linear forwards;
+	-webkit-animation: ufomove 15s linear forwards;
+}
+
+
+
+
+.ani-hb-down{
+				animation: hbdown 4s ease-out forwards;
+			}
+			
+			.ani-smallhb{
+				animation: smallhb 4s linear forwards;
+				animation-delay: 4s;
+			}
+			
+			.ani-guang{
+				animation: guang 3s linear infinite;
+			}
+			
+			@keyframes hbdown{
+				from{transform: translateY(-110%);}
+				to{transform: translateY(50%);}
+			}
+			
+			@keyframes smallhb{
+				0%{transform: scale(0);opacity: 0;}
+				20%{transform: scale(1);opacity: 1;}
+				30%{transform: rotate(-10deg);}
+				40%{transform: rotate(10deg);}
+				50%{transform: rotate(-10deg);}
+				60%{transform: rotate(10deg);}
+				70%{transform: rotate(-10deg);}
+				80%{transform: rotate(10deg);}
+				90%{transform: rotate(-10deg);}
+				100%{transform: rotate(0deg);}
+			}
+			
+			@keyframes guang{
+				from{transform: rotate(0);}
+				to{transform: rotate(360deg);}
+			}
+
+.xrhb{
+	position: absolute;top:0;height: 310px;transform: translateY(-100%);
+}
+

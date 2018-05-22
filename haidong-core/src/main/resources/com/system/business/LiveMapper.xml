@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LiveMapper">
+	
+	
+	<!-- 新增直播信息-->
+	<insert id="saveLiveInfo" parameterType="pd">
+		insert into tb_live(
+			title,	
+			person,	
+			gift,
+			name,	
+			status,	
+			city,		
+			id,
+			liveCode,
+			password,
+			wedding_time,
+			userId
+		) values (
+			#{title},	
+			#{person},	
+			#{gift},
+			#{name},	
+			#{status},	
+			#{city},	
+			#{id},
+			#{liveCode},
+			#{password},
+			#{wedding_time},
+			#{userId}
+		)
+	</insert>
+	
+	<!-- 新增直播资源路径-->
+	<insert id="saveResource" parameterType="pd">
+		insert into tb_live_resource(
+			headimgurl,
+			font_pic,
+			share_pic,	
+			back_path,	
+			live_path,	
+			id,
+			live_id
+		) values (	
+			#{headimgurl},	
+			#{font_pic},
+			#{share_pic},	
+			#{back_path},	
+			#{live_path},	
+			#{id},
+			#{live_id}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_live
+		where 
+			id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_live
+			set 
+				title = #{title},
+				person = #{person},
+				headimgurl = #{headimgurl},
+				gift = #{gift},
+				status = #{status},
+				city = #{city},
+				picture = #{picture},
+				back_path = #{back_path},
+				live_path = #{live_path},
+				liveCode = #{liveCode},
+				password = #{password}
+				id = #{id}
+			where 
+				id = #{id}
+	</update>
+	
+	<!-- 修改 -->
+	<update id="updateLastDate" parameterType="pd">
+		update  tb_live
+			set 
+				modify_time = now(),
+				join_status = #{joinStatus},
+				login_count = login_count + 1
+			where 
+				id = #{id}
+	</update>
+	
+	
+	<!-- 修改直播状态 -->
+	<update id="operateLive" parameterType="pd">
+		update  tb_live
+			set 
+				person = #{person},
+				status = #{status},
+				modify_user = #{modify_user},
+				modify_time	= #{modify_time}	
+			where 
+				id = #{id}
+	</update>
+	
+	<!-- 更新直播礼物收入 -->
+	<update id="updateGift" parameterType="pd">
+		update  tb_live
+			set 
+				gift = gift + #{gift}	
+			where 
+				id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			a.title,	
+			a.person,	
+			a.gift,	
+			a.status,	
+			a.liveCode,	
+			a.city,	
+			a.id,
+			a.liveCode,
+			a.password,
+			a.QRCodeUrl,
+			a.sign_type,
+			a.userId,
+			a.wedding_time,
+			a.WXQRCodeUrl,
+			a.scene_type,
+			b.game_logo_pic,
+			b.game_sign_content
+		from 
+			tb_live a, tb_live_resource b
+		where 1 = 1 and a.id = b.live_id
+		<if test="id != null and id != ''">
+		    and a.id = #{id}
+		</if>
+		<if test="liveCode != null and liveCode != ''">
+		    and a.liveCode = #{liveCode}
+		</if>	
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.back_path,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{pd.imgHost},b.font_pic) as font_pic,
+				CONCAT(#{pd.imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id order by a.wedding_time desc
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.headimgurl,	
+				a.gift,	
+				a.status,	
+				a.city,	
+				a.picture,	
+				a.back_path,	
+				a.live_path,	
+				a.id
+		from 
+				tb_live a
+	</select>
+	
+	<!-- 列表(尚未开播的直播列表) -->
+	<select id="listPageWaitLive" parameterType="page" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.back_path,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{pd.imgHost},b.font_pic) as font_pic,
+				CONCAT(#{pd.imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id and a.status = '0'
+			<!-- 	and date(a.wedding_time) = curdate() and a.status != '0' -->
+	</select>
+	
+		<!-- 列表(正在直播的直播列表) -->
+	<select id="listPageLiving" parameterType="page" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.back_path,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{pd.imgHost},b.font_pic) as font_pic,
+				CONCAT(#{pd.imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id and a.status = '1'
+			<!-- 	and date(a.wedding_time) = curdate() and a.status != '0' -->
+	</select>
+	
+	<!-- 列表(查询直播) -->
+	<select id="findLiveById" parameterType="pd" resultType="pd">
+	    SELECT 
+	    	a.id as liveid,
+	    	a.title, 
+	    	a.`name`, 
+	    	a.liveCode,
+	    	b.live_path ,
+	    	CONCAT(#{imgHost},b.font_pic) as font_pic,
+	    	a.status
+	    from 
+	    	tb_live a,tb_live_resource b
+		where 
+			a.id = b.live_id
+		and a.id = #{liveId}
+	</select>
+	
+	<!--查询个人直播消息  -->
+	<select id="userLiveList" parameterType="pd" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.back_path,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{imgHost},b.font_pic) as font_pic,
+				CONCAT(#{imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id
+				
+				and a.userId=#{USER_ID}
+	</select>
+	
+	
+	<!-- 列表(根据关键字搜索直播) -->
+	<select id="listPageSearchLive" parameterType="page" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.back_path,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{pd.imgHost},b.font_pic) as font_pic,
+				CONCAT(#{pd.imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id
+				and a.status = '1' and CONCAT(a.name,a.title) like '%${pd.key}%'
+	</select>
+	
+	<!-- 列表(回放的直播) -->
+	<select id="listPageBack" parameterType="page" resultType="pd">
+		select
+				a.title,	
+				a.person,	
+				a.gift,		
+				a.city,		
+				a.id,
+				a.liveCode,
+				a.name,
+				a.status,
+				a.wedding_time,
+				b.live_path,
+				b.headimgurl,
+				CONCAT(#{pd.imgHost},b.back_path) as back_path,
+				CONCAT(#{pd.imgHost},b.font_pic) as font_pic,
+				CONCAT(#{pd.imgHost},b.share_pic) as share_pic	
+		from 
+				tb_live a,tb_live_resource b where a.id = b.live_id
+			
+				and a.status = '2'
+	</select>
+
+	<!-- 保存live直播间的二维码地址 -->
+	<update id="updateLiveQRCodeUrl" parameterType="java.lang.String">
+		update  tb_live
+		set
+			QRCodeUrl = #{QRCodeUrl}
+		where
+			id = #{id}
+	</update>
+
+	<!-- 获取live直播间的二维码地址 -->
+	<select id="queryLiveQRCodeUrl" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT
+			a.QRCodeUrl
+		  FROM
+			tb_live a
+		WHERE
+			a.id = #{id}
+	</select>
+
+	<select id="queryLiveResource" parameterType="java.lang.String" resultType="pd">
+		SELECT
+			back_path,
+			live_path,
+			headimgurl,
+			font_pic,
+			share_pic,
+			game_logo_pic,
+			game_sign_content
+		  FROM
+		  	tb_live_resource
+		  WHERE
+		  	live_id = #{id}
+	</select>
+
+	<select id="queryLive" parameterType="java.lang.String" resultType="pd">
+		SELECT
+			title,
+			person,
+			gift,
+			status,
+			liveCode,
+			city,
+			id,
+			liveCode,
+			password,
+			name,
+			wedding_time,
+			userId,
+			QRCodeUrl
+		FROM
+			tb_live
+		WHERE
+			id = #{id}
+	</select>
+
+	<select id="listLive" resultType="pd">
+		SELECT
+			id,
+			liveCode,
+			title,
+			name
+		FROM
+		  	tb_live
+	</select>
+	
+	
+	<!-- 更新直播流地址 -->
+	<update id="changeLivePath" parameterType="pd">
+		update  tb_live_resource
+			set 
+				live_path = #{videoUrl}
+			where 
+				live_id = #{liveId}	
+	</update>
+	
+	
+	
+	<select id="getCurrentLive" parameterType="pd" resultType="pd">
+		SELECT
+			live_path
+		FROM
+		  	tb_live_resource
+		where 
+			live_id = #{liveId}	
+	</select>
+	
+	
+	<select id="getAuthInfo" parameterType="pd" resultType="pd">
+		SELECT
+			a.open_powder
+		FROM
+		  	tb_component a
+		where 
+			a.status = 1 and a.user_id = #{userId}	
+	</select>
+	
+	<select id="getLiveByReportNum" resultType="pd">
+		SELECT 
+				id,
+				liveCode,
+				scene_type
+		FROM 
+				tb_live 
+		where 
+				id = #{liveid} and (SELECT COUNT(userId) from tb_report where liveid = #{liveid})  &gt;=10;
+	</select>
+	
+	
+	<select id="getCreateUserInfo" parameterType="pd" resultType="pd">
+	    SELECT
+	    	a.id,
+	    	a.mode_type 
+	    from 
+	    	tb_emcee_user a, tb_live b 
+	    where
+	    	a.id = b.userId and b.liveCode = #{liveCode}
+	</select>
+	
+	
+	<select id="getLiveDetailSwitch" parameterType="pd" resultType="pd">
+	    SELECT
+	    	a.system_chat_is_close,
+	    	b.scene_type
+	    from 
+	    	tb_detail_switch a, tb_live b
+	    where
+	    	a.live_id = b.id and a.live_id = #{live_id}
+	</select>
+	
+	
+	<select id="getLiveModeType" parameterType="pd" resultType="pd">
+	    SELECT
+	    	a.mode_type
+	    from 
+	    	tb_emcee_user a, tb_live b
+	    where
+	    	b.userId = a.id and b.id = #{live_id}
+	</select>
+	
+	
+</mapper>

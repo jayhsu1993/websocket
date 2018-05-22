@@ -1,0 +1,48 @@
+/*--------------------------------------------------------------------------------------------------
+
+rank style  (For chrom)
+
+version:1.0
+
+create by :no one
+
+email:no-email
+
+website:http://hidongtv.com
+
+date:2017-06-20
+
+----------------------------------------------------------------------------------------------------*/
+*{margin: 0;padding: 0;font-family: "microsoft yahei"; box-sizing: border-box;}
+
+body{font-size: 15px;}
+
+.main-body{background-image: url(../img/bg.png);background-size: 100% auto;background-repeat: no-repeat;background-position: center;}
+
+.logo{width: 100%;height: 200px;padding:25px 0 0 50px;}
+
+.logo img{height: 100%;}
+
+.title{color: #fff;font-size: 4rem;width: 100%;display: inline-block;text-align: center;margin-top: -30px;}
+
+.title img{width: 450px;}
+
+.content{width: 1200px;height: 700px;margin: auto;background-color: rgba(0,0,0,0.3);border-radius: 15px;padding: 0 50px;box-sizing: content-box;}
+
+.rank-warp{width: 400px;height: 100%;float: left;}
+
+.rank-warp li{ list-style: none;height: 100px;width: 100%;padding: 15px 15px 15px 25px;position: relative; }
+
+.rank-warp li *{display: inline-block;vertical-align: middle;}
+
+.rank-warp li .headimg{width: 70px;height: 70px;    border: 2px solid #F6C894;border-radius: 50px;}
+
+.rank-warp li .name{color: #fff; font-size: 25px;width: 160px;word-break: keep-all;white-space: nowrap;overflow: hidden;display: block; position: absolute; left: 100px;top: 35px; text-overflow: ellipsis;}
+
+.rank-warp li .point{font-size: 28px; color: #f6c849;width: 65px;text-align: right; display: block;position: absolute;right: 65px;top: 30px;}
+
+.rank-warp li .place{ position: absolute; right: 5px; top: 20px;}
+
+.btn{position: absolute;right: 20px;bottom: 20px;width: 100px;height: 100px;text-align: center;opacity: 0.1;cursor: pointer;}
+
+.btn:hover{opacity: 0.8;}

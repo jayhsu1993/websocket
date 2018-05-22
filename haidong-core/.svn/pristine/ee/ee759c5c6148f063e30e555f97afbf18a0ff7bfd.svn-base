@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DetailUserInfoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_detail_userinfo(
+			userId,	
+			wedding_time,	
+			wedding_hotel,	
+			wedding_scheme,	
+			wedding_dress,	
+			table_num,	
+			trip_shoot,	
+			wedding_car,	
+			wedding_ring,	
+			honeymoon_tour,	
+			wedding_purchase,	
+			return_visit_first,	
+			return_visit_second,	
+			return_visit_third,	
+			visit_first_time,	
+			visit_second_time,	
+			visit_third_time,
+			remark,	
+			id
+		) values (
+			#{userId},	
+			#{wedding_time},	
+			#{wedding_hotel},	
+			#{wedding_scheme},	
+			#{wedding_dress},	
+			#{table_num},	
+			#{trip_shoot},	
+			#{wedding_car},	
+			#{wedding_ring},	
+			#{honeymoon_tour},	
+			#{wedding_purchase},	
+			#{return_visit_first},	
+			#{return_visit_second},	
+			#{return_visit_third},	
+			#{visit_first_time},	
+			#{visit_second_time},	
+			#{visit_third_time},
+			#{remark},	
+			#{id}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_detail_userinfo
+		where 
+			id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_detail_userinfo
+			set 
+				userId = #{userId},
+				wedding_time = #{wedding_time},
+				wedding_hotel = #{wedding_hotel},
+				wedding_scheme = #{wedding_scheme},
+				wedding_dress = #{wedding_dress},
+				table_num = #{table_num},
+				trip_shoot = #{trip_shoot},
+				wedding_car = #{wedding_car},
+				wedding_ring = #{wedding_ring},
+				honeymoon_tour = #{honeymoon_tour},
+				wedding_purchase = #{wedding_purchase},
+				return_visit_first = #{return_visit_first},
+				return_visit_second = #{return_visit_second},
+				return_visit_third = #{return_visit_third},
+				visit_first_time = #{visit_first_time},
+				visit_second_time = #{visit_second_time},
+				visit_third_time = #{visit_third_time},
+				remark = #{remark},
+			id = #{id}
+			where 
+				id = #{id}
+	</update>
+	
+	
+		<!-- 修改 -->
+	<update id="editByUserId" parameterType="pd">
+		update  tb_detail_userinfo
+			set 
+				wedding_time = #{wedding_time},
+				wedding_hotel = #{wedding_hotel},
+				wedding_scheme = #{wedding_scheme},
+				wedding_dress = #{wedding_dress},
+				table_num = #{table_num},
+				trip_shoot = #{trip_shoot},
+				wedding_car = #{wedding_car},
+				wedding_ring = #{wedding_ring},
+				honeymoon_tour = #{honeymoon_tour},
+				wedding_purchase = #{wedding_purchase},
+				return_visit_first = #{return_visit_first},
+				return_visit_second = #{return_visit_second},
+				return_visit_third = #{return_visit_third},
+				visit_first_time = #{visit_first_time},
+				visit_second_time = #{visit_second_time},
+				visit_third_time = #{visit_third_time},
+				remark = #{remark}
+			where 
+				userId = #{userId}
+	</update>
+	
+	
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			userId,	
+			wedding_time,	
+			wedding_hotel,	
+			wedding_scheme,	
+			wedding_dress,	
+			table_num,	
+			trip_shoot,	
+			wedding_car,	
+			wedding_ring,	
+			honeymoon_tour,	
+			wedding_purchase,	
+			return_visit_first,	
+			return_visit_second,	
+			return_visit_third,	
+			visit_first_time,	
+			visit_second_time,	
+			visit_third_time,	
+			remark,
+			id
+		from 
+			tb_detail_userinfo
+		where 
+			id = #{id}
+	</select>
+	
+	
+	
+		<!-- 通过userId获取数据 -->
+	<select id="findByUserId" parameterType="pd" resultType="pd">
+		select 
+				a.userId,	
+				a.wedding_time,	
+				a.wedding_hotel,	
+				a.wedding_scheme,	
+				a.wedding_dress,	
+				a.table_num,	
+				a.trip_shoot,	
+				a.wedding_car,	
+				a.wedding_ring,	
+				a.honeymoon_tour,	
+				a.wedding_purchase,	
+				a.return_visit_first,	
+				a.return_visit_second,	
+				a.return_visit_third,	
+				a.visit_first_time,	
+				a.visit_second_time,	
+				a.visit_third_time,	
+				a.remark,
+				a.id,
+				b.nickname
+		from 
+			tb_detail_userinfo a, tb_wechatinfo b
+		where 
+			a.userId = b.USER_ID and a.userId = #{userId}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.userId,	
+				a.wedding_time,	
+				a.wedding_hotel,	
+				a.wedding_scheme,	
+				a.wedding_dress,	
+				a.table_num,	
+				a.trip_shoot,	
+				a.wedding_car,	
+				a.wedding_ring,	
+				a.honeymoon_tour,	
+				a.wedding_purchase,	
+				a.return_visit_first,	
+				a.return_visit_second,	
+				a.return_visit_third,	
+				a.visit_first_time,	
+				a.visit_second_time,	
+				a.visit_third_time,	
+				a.remark,
+				id
+		from 
+				tb_detail_userinfo a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.userId,	
+				a.wedding_time,	
+				a.wedding_hotel,	
+				a.wedding_scheme,	
+				a.wedding_dress,	
+				a.table_num,	
+				a.trip_shoot,	
+				a.wedding_car,	
+				a.wedding_ring,	
+				a.honeymoon_tour,	
+				a.wedding_purchase,	
+				a.return_visit_first,	
+				a.return_visit_second,	
+				a.return_visit_third,	
+				a.visit_first_time,	
+				a.visit_second_time,	
+				a.visit_third_time,	
+				a.remark,
+				a.id
+		from 
+				tb_detail_userinfo a
+	</select>
+	
+</mapper>

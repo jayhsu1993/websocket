@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserAuthsMapper">
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_user_auths(
+			id,	
+			userId,	
+			identity_type,	
+			identifier,
+			credential
+		) values (
+			#{id},	
+			#{userId},	
+			#{identity_type},	
+			#{identifier},
+			#{credential}
+		)
+	</insert>
+	
+	<select id="findByPage" parameterType="pd" resultType="pd">
+		select 
+			id,	
+			userId,	
+			identity_type,	
+			identifier,
+			credential
+		from 
+			tb_user_auths
+		where 
+			identifier = #{identifier}
+	</select>
+
+	<select id="findALL" parameterType="pd" resultType="pd">
+		select 
+			id,	
+			userId,	
+			identity_type,	
+			identifier,
+			credential,
+			create_time
+		from 
+			tb_user_auths		
+	</select>
+
+	<update id="updateCredential" parameterType="pd">
+	 update tb_user_auths set credential =#{credential} where identifier=#{identifier}
+	
+	</update>
+	
+	
+	<select id="findByuserid" parameterType="pd" resultType="pd">
+		select 
+			id,	
+			userId,	
+			identity_type,	
+			identifier,
+			credential
+		from 
+			tb_user_auths
+		where 
+			userId = #{userId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,224 @@
+.zuobiao-warp {
+	position: absolute;
+	top: 300px;
+	left: 985px;
+	width: 150px;
+	height: 150px;
+	/*opacity: 0;*/
+}
+
+@keyframes zuobiaor {
+	from {
+		transform: rotate(0turn) translateY(-10px) translateY(30%) rotate(1turn) ;
+	}
+	to {
+		transform: rotate(1turn) translateY(-10px) translateY(30%) rotate(0turn) ;
+	}
+}
+
+.avatar {
+	animation: zuobiaor 3s infinite linear;
+}
+
+.zuobiao {
+	/*position: absolute;
+	top: 290px;
+	left: 975px;*/
+	width: 60px;
+	opacity: 0;
+}
+
+.zuobiao-ani {
+	animation: zuobiao 2s ease infinite;
+	-webkit-animation: zuobiao 2s ease infinite
+}
+
+.wish-video-warp {
+	position: relative;
+	width: 600px;
+	/*height: 360.5px;*/
+	transform: perspective(500px) rotateY(15deg);
+	position: absolute;
+	/*top: 144px;*/
+	top: 324px;
+	left: 365px;
+	border: 3px solid rgba(164, 233, 255, 0.46);
+	box-shadow: 0 0 20px rgba(164, 233, 255, 0.46) inset;
+	/*	padding: 20px;*/
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.12);
+	overflow: hidden;
+}
+
+.wish-video-name {
+	height: 0;
+	line-height: 45px;
+	position: absolute;
+	/*top: 576px;*/
+	top: 594px;
+	left: 720px;
+	/*padding: 0 10px;*/
+	font-size: 20px;
+	border: 1px solid rgba(164, 233, 255, 0.46);
+	box-shadow: 0 0 20px rgba(164, 233, 255, 0.46) inset;
+	color: rgb(164, 233, 255);
+	border-radius: 5px;
+	/*width: 350px;*/
+	text-align: center
+}
+
+.wish-video-name1 {
+	/*height: 48px;*/
+	line-height: 45px;
+	position: absolute;
+	/*top: 328px;*/
+	top: 350px;
+	left: 1015px;
+	/*padding: 0 10px;*/
+	font-size: 20px;
+	border: 1px solid rgba(164, 233, 255, 0.46);
+	box-shadow: 0 0 20px rgba(164, 233, 255, 0.46) inset;
+	color: rgb(164, 233, 255);
+	border-radius: 5px;
+	/*width: 200px;*/
+	text-align: center
+}
+
+.video-line-v {
+	width: 3px;
+	height: 0px;
+	background: rgba(164, 233, 255, 0.46);
+	position: absolute;
+	left: 640px;
+	top: 508px;
+}
+
+.video-line-h {
+	width: 0px;
+	height: 3px;
+	background: rgba(164, 233, 255, 0.46);
+	position: absolute;
+	left: 640px;
+	top: 596px;
+}
+
+.video-line-h1 {
+	/*width: 100px;*/
+	height: 3px;
+	background: rgba(164, 233, 255, 0.46);
+	position: absolute;
+	left: 900px;
+	top: 350px;
+}
+
+@-webkit-keyframes lightmove {
+	from {
+		transform: translateY(0)
+	}
+	to {
+		transform: translateY(500px)
+	}
+}
+
+@keyframes lightmove {
+	from {
+		transform: translateY(0)
+	}
+	to {
+		transform: translateY(500px)
+	}
+}
+
+.lightmove {
+	animation: lightmove 1s linear forwards;
+	-webkit-animation: lightmove 1s linear forwards
+}
+
+@-webkit-keyframes zoomB {
+	from {
+		transform: scale(0) perspective(500px) rotateY(15deg) translateX(-1000px);
+	}
+	to {
+		transform: scale(1) perspective(500px) rotateY(15deg) translateX(0);
+	}
+}
+
+@keyframes zoomB {
+	from {
+		transform: scale(0) perspective(500px) rotateY(15deg) translateX(-1000px);
+	}
+	to {
+		transform: scale(1) perspective(500px) rotateY(15deg) translateX(0);
+	}
+}
+
+
+/*.zoomB {
+		animation: zoomB 1s ease-in backwards;
+		-webkit-animation: zoomB 1s ease-in backwards;
+		animation-delay: 2s;
+		-webkit-animation-delay: 2s;
+	}*/
+
+.sup {
+	animation: suspension 2s ease infinite;
+	-webkit-animation: suspension 2s ease infinite
+}
+
+
+/*震动*/
+
+@-webkit-keyframes suspension {
+	0% {
+		-webkit-transform: translateY(2px) perspective(500px) rotateY(15deg);
+	}
+	50% {
+		-webkit-transform: translateY(4px) perspective(500px) rotateY(15deg);
+	}
+	100% {
+		-webkit-transform: translateY(2px) perspective(500px) rotateY(15deg);
+	}
+}
+
+
+/*震动*/
+
+@keyframes suspension {
+	0% {
+		transform: translateY(2px) perspective(500px) rotateY(15deg);
+	}
+	50% {
+		transform: translateY(4px) perspective(500px) rotateY(15deg);
+	}
+	100% {
+		transform: translateY(2px) perspective(500px) rotateY(15deg);
+	}
+}
+
+@keyframes zuobiao {
+	0% {
+		transform: translateY(2px) perspective(500px) scale(1.1);
+	}
+	50% {
+		transform: translateY(4px) perspective(500px)  scale(1.0);
+	}
+	100% {
+		transform: translateY(2px) perspective(500px) scale(1.1);
+	}
+}
+
+@-webkit-keyframes zuobiao {
+	0% {
+		transform: translateY(2px) perspective(500px) scale(1.1);
+	}
+	50% {
+		transform: translateY(4px) perspective(500px)  scale(1.0);
+	}
+	100% {
+		transform: translateY(2px) perspective(500px)  scale(1.1);
+	}
+}
+
+.disabled {
+	pointer-events: none;
+}

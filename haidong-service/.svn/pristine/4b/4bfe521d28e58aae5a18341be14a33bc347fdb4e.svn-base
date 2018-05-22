@@ -1,0 +1,173 @@
+package com.huixin.haidong.service.system.business.wechatinfo;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.huixin.framework.redis.RedisUtil;
+import com.huixin.framework.utils.Const;
+import com.huixin.framework.utils.PageData;
+import com.huixin.framework.utils.PoolingHttpClient;
+import com.huixin.framework.wx.util.HttpUtils;
+import com.huixin.haidong.service.system.business.dictionary.DictionaryService;
+import com.huixin.system.dao.DaoSupport;
+import com.huixin.system.entity.Page;
+
+/**
+ * 类名称：wechatinfoService 创建人：system 创建时间：2016-06-30
+ */
+@Service("wechatinfoService")
+public class WechatInfoService {
+
+	@Resource(name = "daoSupport")
+	private DaoSupport dao;
+	
+	@Resource(name = "dictionaryService")
+	private DictionaryService dictionaryService;
+
+	/*
+	 * 新增
+	 */
+	public void save(PageData pd) throws Exception {
+		dao.save("WechatInfoMapper.save", pd);
+	}
+
+	/*
+	 * 删除
+	 */
+	public void delete(PageData pd) throws Exception {
+		dao.delete("WechatInfoMapper.delete", pd);
+	}
+
+	/*
+	 * 修改
+	 */
+	public void edit(PageData pd) throws Exception {
+		dao.update("WechatInfoMapper.edit", pd);
+	}
+
+	/*
+	 * 列表
+	 */
+	public List<PageData> list(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("WechatInfoMapper.datalistPage", page);
+	}
+
+	/*
+	 * 列表(全部)
+	 */
+	public List<PageData> listAll(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("WechatInfoMapper.listAll", pd);
+	}
+
+	/*
+	 * 列表(只查用户姓名和头像地址两个字段)
+	 */
+	public List<PageData> listPart(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("WechatInfoMapper.listPart", pd);
+	}
+
+	/*
+	 * 通过openId获取数据
+	 */
+	public PageData findByOpenId(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findByOpenId", pd);
+	}
+
+	/*
+	 * 通过userId获取数据
+	 */
+	public PageData findByUserId(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findByUserId", pd);
+	}
+
+	/*
+	 * 通过userId获取到用户头像
+	 */
+	public PageData findHeadUrlByUserId(PageData pd) throws Exception {
+		Map map = RedisUtil.getInstance().hgetAll(pd.getString("USER_ID"));
+		if(map.size() == 0) {
+			return (PageData) dao.findForObject("WechatInfoMapper.findHeadUrlByUserId", pd);
+		} else {
+			PageData result = new PageData();
+			result.put("headimgurl", map.get("headimgurl"));
+			result.put("sex", map.get("sex"));
+			result.put("nickname", map.get("nickname"));
+			result.put("USER_ID", pd.getString("USER_ID"));
+			return result;
+		}
+	}
+	
+	/*
+	 * 判断app用户是否签到过
+	 */
+	public PageData judgeReportByUserId(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.judgeReportByUserId", pd);
+		
+		
+	}
+	
+
+	/*
+	 * 批量删除
+	 */
+	public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
+		dao.delete("WechatInfoMapper.deleteAll", ArrayDATA_IDS);
+	}
+
+	/*
+	 * 通过unionid获取数据
+	 */
+	public PageData findByUnionId(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findByUnionId", pd);
+	}
+
+	/*
+	 * 通过unionid获取数据
+	 */
+	public PageData findByUserIdUnionid(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findByUserIdUnionid", pd);
+	}
+
+	public List<PageData> findReportByUserId(Page pd) throws Exception {
+		return (List<PageData>) dao.findForList("WechatInfoMapper.listPageReport", pd);
+	}
+
+	public PageData findReportMoneyByUserId(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findReportMoneyByUserId", pd);
+	}
+	
+	
+	public PageData findUserRandom(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("WechatInfoMapper.findUserRandom", pd);
+	}
+	
+	
+	
+	/**
+	 * 请求chat项目，发广播
+	 * @throws Exception 
+	 */
+	public String broadcastGame(String userId) throws Exception{
+		String chaturl = dictionaryService.getValue(Const.CHATURL);
+		String url = chaturl + "gamePeople/" + userId ;
+		return PoolingHttpClient.httpGet(url);
+	}
+	
+	public static void main(String[] args) {
+		String url = "http://121.40.194.154:8081/haidong-chat/gamePeople/44baf5835bbd402395963e7b9d18b04e";
+		PoolingHttpClient.httpGet(url);
+		System.out.println("============");
+		PoolingHttpClient.httpGet(url);
+		System.out.println("============");
+		PoolingHttpClient.httpGet(url);
+		System.out.println("============");
+		PoolingHttpClient.httpGet(url);
+	}
+
+	
+}

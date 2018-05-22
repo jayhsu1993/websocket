@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HllcMapper">
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_hllc(
+			id,
+			userid,
+			lcname,
+			state,
+			orderNumber
+		) values (
+		   #{id},
+		   #{userid},
+		   #{lcname},
+		   #{state},
+		   #{orderNumber}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_hllc
+			where 
+		id = #{id}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_hllc
+			set 
+			lcname=#{lcname}
+			where 
+				id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select id,userid,lcname,state,orderNumber
+			from tb_hllc  where  
+		i.id = #{id}
+	</select>
+	
+	<!-- 列表 -->
+	<select id="list" parameterType="pd" resultType="pd">
+		select id,userid,lcname,state,orderNumber
+		from 
+			tb_hllc
+		where 1=1 
+		
+		<if test="pd.userid !=null and pd.userid !='' ">
+			and userid = #{pd.userid}
+		</if> 
+		   and state = #{pd.state}
+		   order by orderNumber,createTime
+	</select>
+	
+	<!--删除  -->
+	<delete id="deleteHllc" parameterType="pd">
+		delete from tb_hllc where id=#{id}
+	</delete>
+</mapper>

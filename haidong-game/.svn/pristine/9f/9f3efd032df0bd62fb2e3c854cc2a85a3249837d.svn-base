@@ -1,0 +1,595 @@
+.rl {
+	float: right
+}
+.btn {
+	height: 62px
+}
+.none {
+	display: none
+}
+.btmenu {
+	height: 70px;
+	width: 100%;
+	padding: 10px 40px 0 10px;
+	background-color: rgba(0,0,0,.5);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	box-sizing: border-box
+}
+.rank-warp {
+	margin: 0;
+	padding: 0;
+}
+.rank-warp li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 128px;
+	height: 300px;
+	float: left;
+	position: relative
+}
+.rank-item-b {
+	position: absolute;
+	bottom: 0;
+	width: 100%
+}
+.rank-item-b div img {
+	display: block;
+	margin: 0 auto
+}
+.progress-bar {
+	width: 40px;
+	height: 10px;
+	border: 3px solid #940;
+	margin: 0 auto;
+	background-color: #fee121;
+	background-image: url(../img/game/qwed_03.png)
+}
+.paiming-b {
+	margin-top: -10px;
+	position: relative
+}
+.mingci {
+	position: absolute;
+	color: #FFF;
+	top: 5px;
+	left: 58px
+}
+.touxiang {
+	margin-bottom: -10px;
+	position: relative
+}
+.user {
+	position: absolute;
+	top: 2px;
+	left: 40px;
+	height: 48px;
+	width: 48px;
+	border-radius: 50px
+}
+.username {
+	display: block;
+	color: #000;
+	text-align: center
+}
+.userpoint {
+	display: block;
+	color: #000;
+	text-align: center
+}
+.userpoint: after {
+	content: '鍒�
+}
+.pro {
+	animation: myprogress 4s infinite linear
+}
+@keyframes myprogress {
+	from {
+	background-position-y: 200px
+}
+to {
+	background-position-y: 0
+}
+}
+@-webkit-keyframes myprogress {
+	from {
+	background-position-y: 200px
+}
+to {
+	background-position-y: 0
+}
+}
+.main-people {
+	position: absolute;
+	left: 0;
+	height: 420px;
+	width: 100%;
+	top: 0
+}
+.wife {
+	position: absolute;
+	width: 200px;
+	height: 400px;
+	top: 50px;
+	z-index: 700;
+	left: 200px;
+	background-image: url(../img/man/wife2.png);
+	background-size: 100%;
+	background-repeat: no-repeat
+}
+.husband-warp {
+	position: absolute;
+	width: 170px;
+	height: 400px;
+	top: 170px;
+	right: 50px;
+	z-index: 700
+}
+.husband {
+	height: 100%;
+	width: 100%;
+	background-image: url(../img/man/run.png);
+	background-size: auto;
+	background-repeat: no-repeat
+}
+.kiss {
+	height: 350px;
+	width: 365px;
+	background-image: url(../img/man/kissresult.png);
+	position: absolute;
+	top: 60px;
+	left: 200px;
+	z-index: 800;
+	background-repeat: no-repeat;
+	background-size: auto 350px;
+	background-position-x: -365px
+}
+.tip-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100px;
+	width: 120px;
+	margin: 10% auto;
+	z-index: 999;
+	overflow: hidden
+}
+.num {
+	font-family: "microsoft yahei";
+	position: absolute;
+	font-size: 100px;
+	width: 1em;
+	color: #fff;
+	line-height: 1em;
+	text-align: center;
+	text-shadow: 3px 3px 3px rgba(0,0,0,.8)
+}
+@keyframes run {
+	0% {
+	top: 0
+}
+100% {
+	top: -30em
+}
+}
+.count-down {
+	animation: run 30s steps(30) forwards
+}
+.paiming {
+	position: absolute;
+	left: -25px;
+	top: 18px
+}
+.jiangbei {
+	position: absolute;
+	right: 10px;
+	top: 18px
+}
+.rank-head {
+	position: absolute;
+	left: 30px;
+	top: 8px
+}
+.rank-name {
+	position: absolute;
+	left: 110px;
+	top: 10px;
+	font-size: 24px;
+	color: #fff
+}
+.rank-point {
+	position: absolute;
+	left: 110px;
+	top: 40px;
+	font-size: 22px;
+	color: #ffd24d
+}
+.rank-headimg {
+	position: absolute;
+	left: 40px;
+	top: 13px;
+	height: 50px;
+	width: 50px;
+	border-radius: 100px
+}
+.result-paiming {
+	position: absolute;
+	left: -25px;
+	top: 18px
+}
+.rank-result-close {
+	padding: 5px;
+	right: 0;
+	top: 0
+}
+@keyframes countdown {
+	from {
+	background-position-x: -800px
+}
+to {
+	background-position-x: 200px
+}
+}
+.tip-box-start {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 250px;
+	width: 200px;
+	margin: 10% auto;
+	z-index: 999;
+	background-image: url(../img/man/daojishi.png);
+	background-repeat: no-repeat;
+	background-position-x: -800px
+}
+.game-ready {
+	animation: countdown 5s steps(5) forwards
+}
+.tip-box-loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 100px;
+	width: 400px;
+	margin: auto;
+	z-index: 999;
+	font-size: 80px;
+	font-family: "microsoft yahei";
+	text-align: center
+}
+.run-block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 640px;
+	width: 1280px;
+	z-index: 998;
+	background-color: rgba(39,39,39,.3)
+}
+* {
+	margin: 0;
+	padding: 0
+}
+.head {
+	width: 100%;
+	height: 70px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100
+}
+.stage {
+	height: 390px;
+	width: 100%;
+	position: relative;
+	overflow: hidden
+}
+.rank {
+	height: 330px;
+	width: 100%;
+	background-color: #f8D99c
+}
+.front {
+	position: absolute;
+	top: 0;
+	right: 0;
+	top: 150px;
+	z-index: 150
+}
+.back {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 50
+}
+.sun {
+	position: absolute;
+	right: 400px;
+	top: 30px;
+	z-index: 900;
+	height: 90px;
+	z-index: 60
+}
+.boat1 {
+	position: absolute;
+	top: 235px;
+	left: 700px;
+	z-index: 900;
+	height: 70px;
+	z-index: 60
+}
+.move1 {
+	animation: move1 10s linear infinite;
+	-webkit-animation: move1 10s linear infinite
+}
+.move2 {
+	animation: move1 30s linear infinite;
+	-webkit-animation: move1 20s linear infinite
+}
+.move3 {
+	animation: boatmove 10s linear infinite;
+	-webkit-animation: boatmove 10s linear infinite
+}
+.sunswing {
+	animation: swing 2s linear infinite;
+	-webkit-animation: swing 2s linear infinite
+}
+@-webkit-keyframes swing {
+	0% {
+	transform: rotate(0)
+}
+25% {
+	transform: rotate(20deg)
+}
+75% {
+	transform: rotate(-20deg)
+}
+100% {
+	transform: rotate(0)
+}
+}
+@keyframes move1 {
+	from {
+	transform: translateX(0)
+}
+to {
+	transform: translateX(3156px)
+}
+}
+@-webkit-keyframes move1 {
+	from {
+	transform: translateX(0)
+}
+to {
+	transform: translateX(3156px)
+}
+}
+@keyframes boatmove {
+	from {
+	transform: translateX(0)
+}
+to {
+	transform: translateX(1470px)
+}
+}
+@-webkit-keyframes boatmove {
+	from {
+	transform: translateX(0)
+}
+to {
+	transform: translateX(1470px)
+}
+}
+@keyframes hinge {
+	0% {
+	-webkit-transform: rotate3d(0,0,1,-30deg);
+	transform: rotate3d(0,0,1,-30deg);
+	-webkit-transform-origin: top left;
+	transform-origin: top left
+}
+20%,60% {
+	-webkit-transform: rotate3d(0,0,1,-10deg);
+	transform: rotate3d(0,0,1,-10deg);
+	-webkit-transform-origin: top left;
+	transform-origin: top left
+}
+40%,80% {
+	-webkit-transform: rotate3d(0,0,1,0deg);
+	transform: rotate3d(0,0,1,0deg);
+	-webkit-transform-origin: top left;
+	transform-origin: top left;
+	opacity: 1
+}
+100% {
+	-webkit-transform: rotate3d(0,0,1,-30deg);
+	transform: rotate3d(0,0,1,-30deg);
+	-webkit-transform-origin: top left;
+	transform-origin: top left
+}
+}
+@keyframes hunband-run-x {
+	0% {
+	left: 1180px
+}
+8.33% {
+	left: 1230px
+}
+16.67% {
+	left: 1230px
+}
+24.99% {
+	left: 1180px
+}
+33.32% {
+	left: 1130px
+}
+41.65% {
+	left: 1140px
+}
+50% {
+	left: 1140px
+}
+58.33% {
+	left: 990px
+}
+66.66% {
+	left: 840px
+}
+75% {
+	left: 850px
+}
+83.33% {
+	left: 850px
+}
+91.66% {
+	left: 690px
+}
+100% {
+	left: 580px
+}
+}
+@keyframes manrun {
+	from {
+	background-position-x: 0
+}
+to {
+	background-position-x: -680px
+}
+}
+.hinge {
+	animation: hinge 5s linear infinite;
+	-webkit-animation: hinge 5s linear infinite
+}
+.husband-run {
+	animation: manrun .4s steps(4) infinite;
+	-webkit-animation: manrun .4s steps(4) infinite
+}
+.husband-run-fast {
+	animation: hunband-run-fast .4s linear infinite;
+	-webkit-animation: hunband-run-fast .4s linear infinite
+}
+.husband-run-x {
+	animation: hunband-run-x 30s linear backwards;
+	-webkit-animation: hunband-run-x 30s linear backwards
+}
+@keyframes kissss {
+	from {
+	background-position-x: 0
+}
+to {
+	background-position-x: -5476.9px
+}
+}
+.kiss-ani {
+	animation: kissss 1s steps(15) forwards;
+	-webkit-animation: kissss 1s steps(15) forwards
+}
+.ani_flipInX {
+	animation: flipInX 4s ease-in-out infinite;
+	-webkit-animation: flipInX 4s ease-in-out infinite
+}
+@-webkit-keyframes flipInX {
+	0% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,90deg);
+	transform: perspective(400px) rotate3d(1,0,0,90deg);
+	-webkit-transition-timing-function: ease-in;
+	transition-timing-function: ease-in;
+	opacity: 1
+}
+12.5% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,-20deg);
+	transform: perspective(400px) rotate3d(1,0,0,-20deg);
+	-webkit-transition-timing-function: ease-in;
+	transition-timing-function: ease-in
+}
+25% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,10deg);
+	transform: perspective(400px) rotate3d(1,0,0,10deg);
+	opacity: 1
+}
+37.5% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,-5deg);
+	transform: perspective(400px) rotate3d(1,0,0,-5deg)
+}
+50% 100% {
+	-webkit-transform: perspective(400px);
+	transform: perspective(400px)
+}
+}
+@keyframes flipInX {
+	0% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,90deg);
+	-ms-transform: perspective(400px) rotate3d(1,0,0,90deg);
+	transform: perspective(400px) rotate3d(1,0,0,90deg);
+	-webkit-transition-timing-function: ease-in;
+	transition-timing-function: ease-in;
+	opacity: 1
+}
+12.5% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,-20deg);
+	-ms-transform: perspective(400px) rotate3d(1,0,0,-20deg);
+	transform: perspective(400px) rotate3d(1,0,0,-20deg);
+	-webkit-transition-timing-function: ease-in;
+	transition-timing-function: ease-in
+}
+25% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,10deg);
+	-ms-transform: perspective(400px) rotate3d(1,0,0,10deg);
+	transform: perspective(400px) rotate3d(1,0,0,10deg);
+	opacity: 1
+}
+37.5% {
+	-webkit-transform: perspective(400px) rotate3d(1,0,0,-5deg);
+	-ms-transform: perspective(400px) rotate3d(1,0,0,-5deg);
+	transform: perspective(400px) rotate3d(1,0,0,-5deg)
+}
+50% 100% {
+	-webkit-transform: perspective(400px);
+	-ms-transform: perspective(400px);
+	transform: perspective(400px)
+}
+}
+.ani_delay1 {
+	animation-delay: .2s;
+	-webkit-animation-delay: .2s
+}
+.ani_delay2 {
+	animation-delay: .4s;
+	-webkit-animation-delay: .4s
+}
+.ani_delay3 {
+	animation-delay: .6s;
+	-webkit-animation-delay: .6s
+}
+.ani_delay4 {
+	animation-delay: .8s;
+	-webkit-animation-delay: .8s
+}
+.ani_delay5 {
+	animation-delay: 1s;
+	-webkit-animation-delay: 1s
+}
+.ani_delay6 {
+	animation-delay: 1.2s;
+	-webkit-animation-delay: 1.2s
+}
+.ani_delay7 {
+	animation-delay: 1.4s;
+	-webkit-animation-delay: 1.4s
+}
+.ani_delay8 {
+	animation-delay: 1.6s;
+	-webkit-animation-delay: 1.6s
+}
+.ani_delay9 {
+	animation-delay: 1.8s;
+	-webkit-animation-delay: 1.8s
+}

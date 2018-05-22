@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/data/mongo
+         				http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 引用dubbo配置 
+	<import resource="classpath:dubbo-provider.xml"></import>-->
+	<!-- 启用注解 -->
+	<context:annotation-config />
+	<!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
+	<context:component-scan base-package="com.huixin">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/dbconfig.properties</value>
+				<value>/WEB-INF/classes/mongo.properties</value>
+			</list>
+		</property>
+	</bean>
+	 
+	<!-- 阿里 druid数据库连接池  -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<!-- 数据库基本信息配置 -->
+		<property name="url" value="${jdbc.mysql.admin.url}" />
+		<property name="username" value="${jdbc.mysql.admin.username}" />
+		<property name="password" value="${jdbc.mysql.admin.password}" />
+		<property name="driverClassName" value="${jdbc.mysql.driverClassName}" />
+		<property name="filters" value="${filters}" />
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${maxActive}" />
+		<!-- 初始化连接数量 -->
+		<property name="initialSize" value="${initialSize}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${maxWait}" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${minIdle}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testWhileIdle" value="${testWhileIdle}" />
+		<property name="testOnBorrow" value="${testOnBorrow}" />
+		<property name="testOnReturn" value="${testOnReturn}" />
+		<property name="maxOpenPreparedStatements" value="${maxOpenPreparedStatements}" />
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="${removeAbandoned}" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="${logAbandoned}" />
+	</bean>
+	
+	<!-- 配置mybatis -->
+	<bean id="sqlSessionFactory" class="com.huixin.framework.repository.CustomSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--<property name="configLocation" value="classpath*:com/meinong/mybatis-config.xml"></property>-->
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
+		<!-- mapper扫描 -->
+		<property name="scanClassPath" value="classpath:com/system/*/*.xml"></property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="java.lang.Exception" />
+			<tx:method name="query*" read-only="true" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 事物处理 -->
+	<aop:config proxy-target-class="true">
+		<aop:advisor pointcut="execution(* *..service..*.*(..))" advice-ref="txAdvice"/>
+	</aop:config>
+	
+		<!-- 系统调度控制器 -->
+	<bean id="statTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="random_stat" />
+		<property name="targetMethod" value="execute" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="stat_cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="statTask" />
+		<property name="cronExpression" value="0 23,29 14 * * ?" />
+	</bean>
+	
+	
+	<bean id="textTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="random_text" />
+		<property name="targetMethod" value="execute" />
+		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="text_cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="textTask" />
+		<property name="cronExpression" value="0 23,25,27,29 14 * * ?" />
+	</bean>
+	
+	
+	<bean id="schdulerFactory" lazy-init="false"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="stat_cronTrigger" />
+				<ref bean="text_cronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- mongodb -->
+    <!-- 获取配置资源 -->
+    <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+        <constructor-arg name="username" value="${mongo.user}" />
+        <constructor-arg name="password" value="${mongo.pwd}" />
+    </bean>
+    
+       <mongo:mongo id="mongo" host="${mongo.host}" port="${mongo.port}">
+       <mongo:options 
+            connections-per-host="${mongo.connectionsPerHost}" 
+            threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}" 
+            connect-timeout="${mongo.connectTimeout}" 
+            max-wait-time="${mongo.maxWaitTime}" 
+            auto-connect-retry="${mongo.autoConnectRetry}" 
+            socket-keep-alive="${mongo.socketKeepAlive}" 
+            socket-timeout="${mongo.socketTimeout}" 
+            slave-ok="${mongo.slaveOk}" 
+            write-number="1" 
+            write-timeout="0" write-fsync="true"/> 
+	    </mongo:mongo>
+	    <!-- 设置使用的数据库 名-->
+	    <mongo:db-factory dbname="chatRecord" mongo-ref="mongo"/>
+	    <!-- mongodb的模板 -->
+	    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	       <constructor-arg ref="mongo" />
+	       <constructor-arg name="databaseName" value="chatRecord" />
+	       <constructor-arg ref="userCredentials" />
+	    </bean>
+
+	
+</beans>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LotteryMapper">
+	
+	<insert id="insertLotteryData" parameterType="pd">  
+    	insert into tb_lottery (
+    		id,
+    		userId,
+    		type,
+    		liveId,
+    		flag
+    	) VALUES  
+    <foreach collection="list" item="item" index="index" separator=",">  
+        (#{item.id},#{item.userId},#{item.type},#{item.liveId},#{item.flag})  
+    </foreach>  
+	</insert>  
+	
+	
+	
+	
+	
+	<delete id="deleteLotteryData" parameterType="pd">
+		delete from tb_lottery 
+		where 
+			liveId = #{liveId} 
+			and flag = #{flag}
+			and userId in 
+			<foreach collection="list" index="index" item="item" open="(" separator="," close=")">  
+       			 #{item}  
+    		</foreach>
+	</delete>
+	
+	
+	
+	<delete id="deleteByType" parameterType="pd">
+		delete from tb_lottery 
+		where 
+			liveId = #{liveId} 
+			and flag = #{flag}
+			and type = #{type} 
+	</delete>
+	
+	
+	<!-- 列表(全部) -->
+	<select id="findReportNoAwardList" parameterType="pd" resultType="pd">
+			select
+				a.userId,
+				a.renickname,a.wish,
+				CASE a.reheadimgurl WHEN  ''  THEN b.headimgurl 
+			ELSE a.reheadimgurl END as reheadimgurl   
+			from 
+				tb_report a,tb_wechatinfo b
+			where a.userId = b.USER_ID
+			and a.liveid   = #{liveId}
+			and a.userId not in (select DISTINCT userId from tb_lottery where liveId = #{liveId} and flag = #{flag});
+	</select>
+	
+	
+		<!-- 根据获奖类型查询用户列表 -->
+	<select id="findReportByType" parameterType="pd" resultType="pd">
+			select
+				a.userId,
+				a.renickname,a.wish,
+				CASE a.reheadimgurl WHEN  ''  THEN b.headimgurl 
+			ELSE a.reheadimgurl END as reheadimgurl   
+			from 
+				tb_report a,tb_wechatinfo b
+			where a.userId = b.USER_ID
+			and a.liveid   = #{liveId}
+			AND
+			a.userId in (select userId from tb_lottery where liveid  = #{liveId} and type = #{type} and flag = #{flag});
+			
+	</select>
+
+	<select id="listNameByType" parameterType="pd" resultType="pd">
+		select 
+			userId 
+		from 
+			tb_lottery 
+		where 
+			flag = #{flag} 
+			and liveid   = #{liveId}
+			and type = #{type};
+	</select>	
+	
+	<!-- 查询用户列表(已获奖 flag为2) -->
+		<!-- 查询用户列表(已获奖 flag为2) -->
+	<select id="listHasAward" parameterType="pd" resultType="pd">
+			select
+				a.userId,
+				a.renickname,a.wish,
+				CASE a.reheadimgurl WHEN  ''  THEN b.headimgurl 
+			ELSE a.reheadimgurl END as reheadimgurl  ,
+				c.type,
+				c.create_time
+			from 
+				tb_report a,tb_wechatinfo b,tb_lottery c
+			where a.userId = b.USER_ID
+			and a.liveid   = #{liveId}
+			and a.userId = c.userId
+			and a.liveid = c.liveId
+			and c.flag = #{flag}
+
+			order by c.type,create_time
+		</select>
+	
+	<select id="listNameHasAward" parameterType="pd" resultType="pd">
+		select 
+			userId,
+			type,
+			create_time
+		from 
+			tb_lottery 
+		where 
+			flag = #{flag} 
+			and liveid   = #{liveId}
+		order by type,create_time
+	</select>	
+	
+	
+	<delete id="deleteByAll" parameterType="pd">
+		delete from tb_lottery 
+		where 
+			liveId = #{liveId} 
+			and flag = #{flag}
+	</delete>
+	
+	
+</mapper>

@@ -1,0 +1,98 @@
+#m-huadeng {
+    background-color: #f6ceb5
+}
+
+.huadeng-stage {
+    height: 637px;
+    overflow: hidden;
+    position: relative;
+}
+
+.huadeng-stage .sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.huadeng-stage .moon {
+    position: absolute;
+    left: 1050px;
+    bottom: -252px;
+    /* transform: translateY(-600px) */
+}
+
+.huadeng-stage .moon.move {
+    animation: moon-move 120s forwards;
+}
+
+@keyframes moon-move {
+    from {
+        transform: translate(0, 0)
+    }
+    to {
+        transform: translate(100px, -600px)
+    }
+}
+
+.huadeng-stage .cloud {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    animation: cloud-move 120s infinite;
+}
+
+@keyframes cloud-move {
+    from {
+        transform: translateX(0)
+    }
+    to {
+        transform: translateX(1550px)
+    }
+}
+
+.huadeng-stage .house {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.huadeng-rank {
+    position: absolute;
+    bottom: 0;
+}
+
+.huadeng-stage .deng {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 409px;
+    overflow: hidden;
+}
+
+.huadeng-stage .deng img {
+    animation: huadeng-move 1s steps(4) infinite;
+}
+
+@keyframes huadeng-move {
+    from {
+        transform: translateX(0)
+    }
+    to {
+        transform: translateX(-7760px)
+    }
+}
+
+.huadeng-stage .dl-warp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 637px;
+    overflow: hidden;
+}
+
+.huadeng-stage .dl-warp .item {
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GroupMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_group(
+			groupname,	
+			USER_ID,	
+			num,
+			headUrl,
+			weddingTime,
+			weddingPlace,	
+			id
+		) values (
+			#{groupname},	
+			#{USER_ID},	
+			#{num},	
+			#{headUrl},
+			#{weddingTime},
+			#{weddingPlace},
+			#{id}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_group
+		where 
+			USER_ID = #{USER_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_group
+			set 
+				groupname = #{groupname},
+				USER_ID = #{USER_ID},
+				num = #{num},
+				headUrl = #{headUrl},
+				weddingTime = #{weddingTime},
+				weddingPlace = #{weddingPlace},
+				id = #{id}
+			where 
+				USER_ID = #{USER_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			groupname,	
+			USER_ID,	
+			num,
+			CONCAT(#{imgHost},headUrl) as headUrl,
+			weddingTime,
+			weddingPlace,	
+			id
+		from 
+			tb_group
+		where 
+			id = #{id}
+	</select>
+	
+	
+	<!-- 通过UserId获取数据 -->
+	<select id="findByUserId" parameterType="pd" resultType="pd">
+		select 
+			groupname,	
+			USER_ID,	
+			num,
+			CONCAT(#{imgHost},headUrl) as headUrl,
+			weddingTime,
+			weddingPlace,	
+			id
+		from 
+			tb_group
+		where 
+			USER_ID = #{USER_ID}
+	</select>
+	
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+	      	select	
+				a.id,
+				a.groupname,	
+				(SELECT  nickname from tb_wechatinfo where tb_wechatinfo.USER_ID=a.USER_ID)AS  username,
+			
+				a.headUrl,
+				a.num,
+				a.weddingPlace,
+				a.weddingTime
+				
+		from 
+				tb_group a
+<!-- 		select	
+				a.groupname,	
+				a.USER_ID,	
+				a.num,
+				CONCAT(#{imgHost},a.headUrl) as headUrl,
+				a.weddingTime,	
+				a.weddingPlace,	
+				id
+		from 
+				tb_group a -->
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.groupname,	
+				a.USER_ID,	
+				a.num,
+				CONCAT(#{imgHost},a.headUrl) as headUrl,	
+				a.weddingTime,	
+				a.weddingPlace,		
+				a.id
+		from 
+				tb_group a
+	</select>
+	
+</mapper>

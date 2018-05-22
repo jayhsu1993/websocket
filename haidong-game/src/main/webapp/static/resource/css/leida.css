@@ -1,0 +1,86 @@
+.game-wait{
+	position: fixed;
+	left: 100px;
+	bottom: 100px;
+	text-align: center;
+}
+
+.game-wait-warp{
+	position:relative;
+}
+
+.game-wait-people{
+	color: #FFFFFF;
+	font-size: 25px;
+	padding: 20px;
+	display: block;
+	text-shadow:3px 3px 3px rgba(0,0,0,0.8);
+}
+
+.game-wait-people-num{
+	color: yellow;
+	font-size: 30px;
+}
+
+.leida-sao{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+
+.leida-roate{
+	animation: leidasao 5s linear infinite;
+	-webkit-animation: leidasao 5s linear infinite;
+}
+
+.leida-roate-slow{
+	animation: leidaslow 30s linear infinite;
+	-webkit-animation: leidaslow 30s linear infinite;
+}
+
+
+@keyframes leidaslow{
+	from{transform: rotate(360deg);transform-origin: center center;}
+	to{transform: rotate(0);transform-origin: center center;}
+}
+
+@-webkit-keyframes leidaslow{
+	from{-webkit-transform: rotate(360deg); -webkit-transform-origin: center center;}
+	to{-webkit-transform: rotate(0);-webkit-transform-origin: center center;}
+}
+
+
+
+
+@keyframes leidasao{
+	from{transform: rotate(0);transform-origin: center center;}
+	to{transform: rotate(360deg);transform-origin: center center;}
+}
+
+@-webkit-keyframes leidasao{
+	from{-webkit-transform: rotate(0); -webkit-transform-origin: center center;}
+	to{-webkit-transform: rotate(360deg);-webkit-transform-origin: center center;}
+}
+
+
+
+
+.game-head{
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	border-radius: 100px;
+	border: 2px solid #FFF600;
+	top: 0;
+	left: 0;
+}
+
+.main-erweima{
+	position: absolute;
+    height: 250px;
+    top: 110px;
+    border-radius: 50px;
+    left: 106px;
+    width: 244px
+}

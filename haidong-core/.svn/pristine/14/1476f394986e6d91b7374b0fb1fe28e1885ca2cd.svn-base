@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ConferenceMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_conference(
+			id,	
+			name,
+			phoneNumber	
+		) values (
+			#{id},	
+			#{name},	
+			#{phoneNumber}
+		)
+	</insert>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				id,	
+				name,	
+				phoneNumber
+		from 
+				tb_conference 
+				
+				where 1=1
+				
+				order by createTime
+	</select>
+	
+	<select id="findByPhone" parameterType="page" resultType="pd">
+	select
+				id,	
+				name,	
+				phoneNumber
+		from 
+				tb_conference 
+				
+				where 1=1
+				
+				and phoneNumber=#{phoneNumber}
+	</select>
+</mapper>

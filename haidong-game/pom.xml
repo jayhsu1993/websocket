@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.huixin</groupId>
+    <artifactId>haidong</artifactId>
+    <version>1.0</version>
+   <relativePath>../haidong/pom.xml</relativePath>
+  </parent>
+  <groupId>com.huixin</groupId>
+  <artifactId>haidong-game</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <dependencies>
+		<dependency>
+			<artifactId>haidong-service</artifactId>
+			<groupId>com.huixin</groupId>
+			<version>1.0</version>
+		</dependency>
+      <dependency>
+          <artifactId>haidong-serviceimpl</artifactId>
+          <groupId>com.huixin</groupId>
+          <version>1.0</version>
+      </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+  </dependencies>
+  <!--<build>-->
+    <!--<finalName>haidong-game</finalName>-->
+  <!--</build>-->
+</project>

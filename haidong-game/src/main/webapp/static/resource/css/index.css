@@ -1,0 +1,491 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+
+#sliderWarp{
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+.fleft{float: left;}
+.fright{float: right;}
+
+.header {
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: url(../img/index/g_header_bg.png);
+    padding: 10px 10px 0 10px;
+}
+
+.footer{width: 100%;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    left: 0;
+    background: url(../img/index/g_footer_bg.png);
+    padding: 10px 10px 0 10px;
+    opacity: 0.8;
+ }
+
+
+.logo img{height: 50px;}
+
+.footer:hover{/*opacity: 0.8;*/}
+
+.people{background-image: url(../img/index/people.png);width: 150px;height: 50px;background-repeat: no-repeat;
+	color: #fff;
+	line-height: 50px;
+	font-size: 14px;
+	padding-left: 45px;
+
+}
+
+.btn-menu{
+	height: 55px;
+	width: 75px;
+	cursor: pointer;
+}
+
+.btn-menu-big{
+	height: 55px;
+	cursor: pointer;
+}
+
+.btn-menu-big img{
+	height: 100%;
+}
+
+.btn-menu img{height: 100%;}
+
+.line {
+    width: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    border-right: dashed 1px;
+    height:48px;
+    margin-right: 15px;
+}
+
+
+.module{width: 100%;height: 100%;position: absolute;top: 0;left: 0; display: block;opacity: 0;background-color: rgba(0,0,0,0.5)}
+
+.module.active{display: block;}
+
+.module .content{height: 100%;width: 100%;position: relative;}
+
+/*祝福榜 聊天区域*/
+.cw{
+	position: absolute;z-index: 800;top: 70px;left: 10px; pointer-events: none;
+}
+
+.cw-money-list{
+	width: 382px;height: 512px;background: url(../img/zhufubang.png) no-repeat center ;background-size: 100%;padding: 95px 15px 15px 15px;
+}
+
+.cw-money-list ul li{
+	position: relative;
+	margin-top: 15px;
+}
+.cw-money-list ul li:first-child{
+	margin-top: 0;
+}
+
+.cw-money-list ul li img:first-child{
+	width: 70px;height: 70px;border: 2px solid #F6C894;border-radius: 50px;vertical-align: middle;
+}
+
+.cw-money-list-username{
+	font-size: 25px;width: 135px;word-break:keep-all;white-space:nowrap;overflow:hidden;display: block;position: absolute;left: 85px;top: 12px;text-overflow:ellipsis;
+}
+
+.cw-money-list-money{
+	font-size: 28px;color: #f6c849;width: 65px;text-align: right;display: block;position: absolute;right: 40px;top: 12px;
+}
+
+.cw-money-list ul li img:last-child{
+	position: absolute;right: -10px;top: 8px;
+}
+
+.cw-chat-list{
+	width:382px;height: 413px;background: url(../img/liaotiankuang.png) no-repeat center ;background-size: 100%;overflow: hidden;padding: 0px 15px 15px 15px;
+	margin-top: 5px;
+}
+
+.cw-chat-item{
+	color: #00fcff;margin-top: 10px;font-size:22px;
+}
+.cw-chat-item *{
+	vertical-align: middle;
+}
+
+.cw-chat-normal{
+	color: #fff;
+}
+
+.cw-chat-wish{
+	border-radius: 10px;
+	background: linear-gradient(0deg, rgba(255, 94, 113, 1), rgba(255, 94, 113, 0.0));
+	background: -webkit-linear-gradient(0deg, rgba(255, 94, 113, 1), rgba(255, 94, 113, 0.0));
+}
+
+.cw-chat-wish .cw-chat-normal {
+	color: #fdff35;
+	
+}
+
+@keyframes dp-move{
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: -3832px;
+	}
+}
+
+
+
+/*拔河游戏*/
+@keyframes bahe-people-move{
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: -3840px;
+	}
+}
+
+@-webket-keyframes bahe-people-move{
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: -3840px;
+	}
+}
+
+.bahe-people{
+	width:1920px ;height: 367px;background-image: url(../img/bahe/bahepeople.png);background-position-x: 0;
+	position: relative;
+}
+
+.bahe-people-move {
+	animation: bahe-people-move 1s infinite steps(2);
+	-webkit-animation: bahe-people-move 1s infinite steps(2);
+}
+
+.rope{
+	height: 9px;
+	width: 100%;
+	position: absolute;
+	top: 643px;
+	background-image: url(../img/bahe/rope.png);
+}
+
+.bahe-head-l{
+	position: absolute;
+	width: 800px;
+	top: -70px;
+	left: -50px;
+}
+
+.bahe-head-r{
+	position: absolute;
+	width: 800px;
+	top: -70px;
+	right:-100px;
+}
+
+.bahe-head-r li{
+	float: left;margin-left: 10px;
+}
+
+.bahe-head-r li img{
+	height: 70px;
+	width: 70px;
+	border-radius: 50px;
+}
+
+
+.bahe-head-l li{
+	float: right;margin-left: 10px;
+	
+}
+.bahe-head-l li img{
+	height: 70px;
+	width: 70px;
+	border-radius: 50px;
+}
+
+
+@keyframes bahe-people-lr{
+	0%{transform: translateX(5px);}
+	25%{transform: translateX(-5px);}
+	50%{transform: translateX(5px);}
+	75%{transform: translateX(-5px);}
+	100%{transform: translateX(5px);}
+}
+
+
+.bahe-people-lr{
+	position: absolute;top: 450px;	
+	
+}
+
+.ani-bahe-people{
+	animation: bahe-people-lr 5s infinite ease;
+	-webkit-animation: bahe-people-lr 5s infinite ease;
+}
+
+
+@keyframes dp-move{
+	from {
+		background-position-x: 0;
+	}
+	to {
+		background-position-x: -3832px;
+	}
+}
+
+
+.dp-move {
+	animation: dp-move 1s forwards steps(8) ;
+	-webkit-animation: dp-move 1s forwards steps(8) ;
+}
+
+
+.t-red{
+	width: 416px;
+	height: 94px;
+	background:url(../img/bahe/red.png) no-repeat;
+	float: left;
+	position: relative;
+}
+
+.bahe-team{
+	padding: 150px;
+}
+
+
+.t-blue{
+	width: 416px;
+	height: 94px;
+	background:url(../img/bahe/blue.png) no-repeat;
+	float: right;
+	position: relative;
+}
+
+.t-red-people{
+    font-size: 38px;
+    position: absolute;
+    left: 280px;
+    top: 20px;
+    color: #ff0161;
+    font-weight: 600;
+}
+
+.t-blue-people{
+    font-size: 38px;
+    position: absolute;
+    left: 280px;
+    top: 20px;
+    color: #0054bf;
+    font-weight: 600;
+}
+
+.t-red-point{
+	display: block;
+	position: absolute;
+	font-size: 44px;
+	width: 250px;
+	color: #FF0161;
+	background-color: #fed14d;
+	border: 5px solid #fda300;
+	height: 85px;
+	/*padding: 20px;*/
+	padding: 0 30px;
+	border-radius: 50px;
+	line-height: 78px;
+	bottom:  -110px;
+	text-align: right;
+}
+
+.t-blue-point{
+	display: block;
+	position: absolute;
+	font-size: 44px;
+	width: 250px;
+	color: #FF0161;
+	background-color: #fed14d;
+	border: 5px solid #fda300;
+	height: 85px;
+	/*padding: 20px;*/
+	padding: 0 30px;
+	border-radius: 50px;
+	line-height: 78px;
+	bottom:  -110px;
+	text-align: right;
+	right: 0;
+}
+
+
+.bahe-wait-l{
+	padding: 100px 0 0 50px;
+	position: relative;
+}
+
+.bahe-wait-r{
+	padding: 100px 50px 0 0;
+	position: relative;
+}
+
+.w-people-warp-l{
+	padding-left: 25px;
+	position: absolute;
+   height: 410px;
+    width: 485px;
+/*	background-color: red;*/
+    top: 250px;
+    left: 160px;
+    overflow: hidden;
+}
+
+
+.w-people-warp-r{
+	padding-left: 25px;
+	position: absolute;
+    height: 410px;
+    width: 485px;
+/*	background-color: red;*/
+    top: 250px;
+    left: 105px;
+     overflow: hidden;
+}
+
+.w-people-warp-l img{
+	width: 70px;
+	height: 70px;
+	border-radius: 50px;
+	margin: 5px;
+}
+
+.w-people-warp-r img{
+	width: 70px;
+	height: 70px;
+	border-radius: 50px;
+	margin: 5px;
+}
+
+.bherweima{
+	position: absolute;
+    left: 740px;
+    top: 0px;
+    width: 480px;
+    height: 820px;
+    background-image: url(../img/bahe/vskuang.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bherweima img{
+    position: absolute;
+    top: 327px;
+    width: 380px;
+    left: 50px;
+}
+
+
+/*拔河 end*/
+
+
+
+/*红包通知 end*/
+@-webkit-keyframes zoomInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, .055, .675, .19);
+    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, .885, .32, 1);
+    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
+  }
+}
+@keyframes zoomInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+    -ms-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, .055, .675, .19);
+    animation-timing-function: cubic-bezier(0.55, .055, .675, .19)
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+    -ms-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, .885, .32, 1);
+    animation-timing-function: cubic-bezier(0.175, .885, .32, 1)
+  }
+}
+
+
+.zoomInDown {
+  -webkit-animation-name: zoomInDown;
+  animation-name: zoomInDown;
+    -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+    -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+
+
+
+.red-name{
+	    position: absolute;
+    height: 65px;
+    width: 600px;
+    /* background-color: red; */
+    left: 670px;
+    top: 630px;
+    display: inline-block;
+    text-align: center;
+    line-height: 65px;
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.red-content{
+	    position: absolute;
+    height: 65px;
+    width: 600px;
+    /* background-color: blue; */
+    left: 500px;
+    top: 500px;
+    left: 670px;
+    top: 700px;
+    display: inline-block;
+    text-align: center;
+    line-height: 65px;
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+
+
+
+

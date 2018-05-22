@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WeddingbudgetMapper">
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_wedding_budget(
+			id,	
+			user_name,	
+			phone,
+			budget_money,
+			info,
+			state,
+			userId
+		) values (
+			#{id},	
+			#{user_name},	
+			#{phone},
+			#{budget_money},	
+			#{info},
+			#{state},
+			#{userId}
+		)
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="pd">
+		update  tb_wedding_budget
+			set 
+				user_name =	#{user_name},	
+				phone =	#{phone},
+				budget_money = #{budget_money},
+				info = #{info},
+				state = #{state},
+				op_userId = #{op_userId}
+			where 
+				id = #{id}
+	</update>
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			id,	
+			user_name,	
+			phone,
+			budget_money,
+			info,
+			state,
+			userId,
+			op_userId,
+			add_time
+		from 
+			tb_wedding_budget
+		where 
+			id = #{id}
+	</select>
+	
+		<!-- 通过ID获取数据 -->
+	<select id="findByPhone" parameterType="pd" resultType="pd">
+		select 
+			id,	
+			user_name,	
+			phone,
+			budget_money,
+			info,
+			state,
+			userId,
+			op_userId,
+			add_time
+		from 
+			tb_wedding_budget
+		where 
+			phone = #{phone}
+	</select>
+</mapper>

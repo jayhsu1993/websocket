@@ -1,0 +1,7 @@
+#Tomcat publish data
+#Tue May 22 18:29:08 CST 2018
+org.eclipse.jst.j2ee.server\:haidong-core=WEB-INF/lib/haidong-core-1.0.jar
+org.eclipse.jst.j2ee.server\:haidong-service=WEB-INF/lib/haidong-service-1.0.jar
+org.eclipse.jst.j2ee.server\:haidong-framework=WEB-INF/lib/haidong-framework-1.0.jar
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\Administrator\\.m2\\repository\\org\\springframework\\spring-web\\4.1.6.RELEASE\\spring-web-4.1.6.RELEASE.jar=WEB-INF/lib/spring-web-4.1.6.RELEASE.jar
+org.eclipse.jst.j2ee.server\:haidong-domain=WEB-INF/lib/haidong-domain-1.0.jar

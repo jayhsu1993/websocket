@@ -1,0 +1,19 @@
+/*
+ *轮播背景样式
+ * */
+@-webkit-keyframes fadeIn{0%{opacity:0;transform:;}
+100%{opacity:1}
+}
+@keyframes fadeIn{0%{opacity:0}
+100%{opacity:1}
+}
+@-webkit-keyframes fadeOut{0%{opacity:1}
+100%{opacity:0}
+}
+@keyframes fadeOut{0%{opacity:1}
+100%{opacity:0}
+}
+.fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-duration:2s;animation-duration:2s;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}
+.fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut;-webkit-animation-duration:2s;animation-duration:2s;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards}
+.slider{height:100%;width:100%;position:relative}
+.slider-item{position:absolute;top:0;left:0;height:100%;background-size:100%;background-repeat:no-repeat;background-position:center;width:100%;opacity:0}

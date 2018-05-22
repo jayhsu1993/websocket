@@ -1,0 +1,213 @@
+package com.huixin.haidong.service.system.business.live;
+
+import com.huixin.framework.utils.PageData;
+import com.huixin.system.dao.DaoSupport;
+import com.huixin.system.entity.Page;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * 类名称：liveService 创建人：system 创建时间：2016-07-01
+ */
+@Component
+public class LiveDao {
+
+	@Resource(name = "daoSupport")
+	private DaoSupport dao;
+
+	/*
+	 * 新增直播信息
+	 */
+	public void saveLiveInfo(PageData pd) throws Exception {
+		dao.save("LiveMapper.saveLiveInfo", pd);
+	}
+
+	/*
+	 * 新增直播资源路径
+	 */
+	public void saveResource(PageData pd) throws Exception {
+		dao.save("LiveMapper.saveResource", pd);
+	}
+
+	/*
+	 * 删除
+	 */
+	public void delete(PageData pd) throws Exception {
+		dao.delete("LiveMapper.delete", pd);
+	}
+
+	/*
+	 * 修改
+	 */
+	public void edit(PageData pd) throws Exception {
+		dao.update("LiveMapper.edit", pd);
+	}
+	
+	public void updateLastDate(PageData live) throws Exception {
+		dao.update("LiveMapper.updateLastDate", live);
+	}
+
+	/*
+	 * 列表
+	 */
+	public List<PageData> list(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.datalistPage", page);
+	}
+
+	/*
+	 * 列表(全部)
+	 */
+	public List<PageData> listAll(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.listAll", pd);
+	}
+
+	/*
+	 * 列表(获取当前正在直播的列表)
+	 */
+	public List<PageData> listRecommend(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.datalistPage", page);
+	}
+	
+	/*
+	 * 列表(获取当前正在直播的列表)
+	 */
+	public List<PageData> listToday(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.listPageToday", page);
+	}
+	
+	/*
+	 * 列表(获取回放直播的列表)
+	 */
+	public List<PageData> listBack(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.listPageBack", page);
+	}
+
+	/*
+	 * 列表(根据关键字搜索直播)
+	 */
+	public List<PageData> searchLive(Page page) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.listPageSearchLive", page);
+	}
+	
+	/*
+	 * 通过id获取数据
+	 */
+	public PageData findById(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("LiveMapper.findById", pd);
+	}
+
+	/*
+	 * 批量删除
+	 */
+	public void deleteAll(String[] ArrayDATA_IDS) throws Exception {
+		dao.delete("LiveMapper.deleteAll", ArrayDATA_IDS);
+	}
+
+	/*
+	 * 操作直播状态
+	 */
+	public void operateLive(PageData pd) throws Exception {
+		dao.update("LiveMapper.operateLive", pd);
+	}
+
+	/*
+	 * 更新礼物收入
+	 */
+	public void updateGift(PageData pd) throws Exception {
+		dao.update("LiveMapper.updateGift", pd);
+	}
+
+	/*
+	 * 进入直播
+	 */
+	public PageData findLiveById(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("LiveMapper.findLiveById", pd);
+	}
+
+	/**
+	 * 进入个人用户直播
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public PageData getUserLive(PageData pd) throws Exception {
+
+		return (PageData) dao.findForObject("LiveMapper.userLiveList", pd);
+	}
+
+	/**
+	 * 保存live直播间的二维码地址
+	 * @param QRCodeUrl
+	 * @throws Exception
+	 */
+	public void updateLiveQRCodeUrl(String QRCodeUrl, String id) throws Exception{
+			PageData pd = new PageData();
+			pd.put("id", id);
+			pd.put("QRCodeUrl", QRCodeUrl);
+			dao.update("LiveMapper.updateLiveQRCodeUrl", pd);
+	}
+
+	/**
+	 * 获取live直播间的二维码地址
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public String queryLiveQRCodeUrl(String id) throws Exception{
+		PageData pd = new PageData();
+		pd.put("id", id);
+		pd = (PageData) dao.findForObject("LiveMapper.queryLiveQRCodeUrl", pd);
+		return pd.getString("QRCodeUrl");
+	}
+
+	public PageData queryLive(String id) throws Exception {
+		PageData pd = new PageData();
+		pd.put("id", id);
+		return (PageData)dao.findForObject("LiveMapper.queryLive", pd);
+	}
+
+	public PageData queryLiveResource(String id) throws Exception {
+		PageData pd = new PageData();
+		pd.put("id", id);
+		return (PageData)dao.findForObject("LiveMapper.queryLiveResource", pd);
+	}
+
+	public List<PageData> listLive(PageData pd) throws Exception {
+		return (List<PageData>) dao.findForList("LiveMapper.listLive", pd);
+	}
+	
+	/**
+	 * 获取用户是否绑定公众号，及是否开启一键吸粉功能
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public PageData getAuthInfo(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("LiveMapper.getAuthInfo", pd);
+	}
+	
+	/**
+	 * 获取创建该直播用户的信息
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public PageData getCreateUserInfo(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("LiveMapper.getCreateUserInfo", pd);
+	}
+	
+	/**
+	 * 获取直播间定制参数信息
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public PageData getLiveConfig(PageData pd) throws Exception {
+		return (PageData) dao.findForObject("LiveMapper.getLiveConfig", pd);
+	}
+	
+	
+}

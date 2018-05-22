@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WechatInfoMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into tb_wechatinfo(
+			wechat,	
+			openid,	
+			nickname,	
+			sex,	
+			province,	
+			city,	
+			country,	
+			headimgurl,	
+			unionid,	
+			cid,	
+			count,	
+			USER_ID,
+			origin,
+			wedding_date
+		) values (
+			#{wechat},	
+			#{openid},	
+			#{nickname},	
+			#{sex},	
+			#{province},	
+			#{city},	
+			#{country},	
+			#{headimgurl},	
+			#{unionid},	
+			#{cid},	
+			#{count},	
+			#{USER_ID},
+			#{origin},
+			#{wedding_date}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from tb_wechatinfo
+		where 
+			USER_ID = #{USER_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  tb_wechatinfo
+			<set> 
+				  <if test="wechat !=null and wechat !=''">
+				  		wechat = #{wechat},
+				  </if>
+			       <if test="openid !=null and openid !=''">
+				  		openid = #{openid},
+				  </if>
+				  <if test="nickname !=null and nickname !=''">
+			  			nickname = #{nickname},
+				  </if>
+				  <if test="sex !=null and sex !=''">
+			  			sex = #{sex},
+				  </if>
+				  <if test="province !=null and province !=''">
+			  			province = #{province},
+				  </if>
+				  <if test="city !=null and city !=''">
+			  			city = #{city},
+				  </if>
+				  <if test="country !=null and country !=''">
+			  			country = #{country},
+				  </if>
+				  <if test="headimgurl !=null and headimgurl !=''">
+			  			headimgurl = #{headimgurl},
+				  </if>
+				  <if test="unionid !=null and unionid !=''">
+			  			unionid = #{unionid},
+				  </if>
+				  <if test="cid !=null and cid !=''">
+			  			cid = #{cid},
+				  </if>
+				  <if test="count !=null and count !=''">
+			  			count = #{count},
+				  </if>
+				  <if test="birthday !=null and birthday !=''">
+			  			birthday = #{birthday},
+				  </if>
+				  <if test="wedding_date !=null and wedding_date !=''">
+			  			wedding_date = #{wedding_date}
+				  </if>
+			 </set> 
+			where 
+				USER_ID = #{USER_ID}
+	</update>
+	
+	
+	<!-- 通过UserId获取数据 -->
+	<select id="findByUserId" parameterType="pd" resultType="pd">
+		select 
+			wechat,	
+			openid,	
+			nickname,	
+			sex,	
+			province,	
+			city,	
+			country,	
+			headimgurl,	
+			unionid,	
+			cid,	
+			count,	
+			USER_ID,
+			birthday,
+			origin,
+			wedding_date
+		from 
+			tb_wechatinfo
+		where 
+			USER_ID = #{USER_ID}
+	</select>
+	
+	<!-- 通过UserId获取用户头像地址 -->
+	<select id="findHeadUrlByUserId" parameterType="pd" resultType="pd">
+		select 	
+			headimgurl,
+			nickname,
+			sex,
+			USER_ID
+		from 
+			tb_wechatinfo
+		where 
+			USER_ID = #{USER_ID}
+	</select>
+	
+	<!-- 随机获得一个用户信息 -->
+	<select id="findUserRandom" parameterType="pd" resultType="pd">
+		select 	
+			USER_ID,
+			headimgurl,
+			nickname,
+			sex
+		from 
+			tb_wechatinfo where DATE(create_time) &lt; DATE(NOW()) and origin = '1' ORDER BY RAND() limit 1
+	</select>
+	
+	
+	<!-- 通过OpenId获取数据 -->
+	<select id="findByOpenId" parameterType="pd" resultType="pd">
+		select 
+			wechat,	
+			openid,	
+			nickname,	
+			sex,	
+			province,	
+			city,	
+			country,	
+			headimgurl,	
+			unionid,	
+			cid,	
+			count,	
+			USER_ID
+		from 
+			tb_wechatinfo
+		where 
+			1 = 1
+		<if test="openid != null and openid != ''">
+			and	openid = #{openid}
+		</if>
+		<if test="unionid != null and unionid != ''">
+			and	unionid = #{unionid}
+		</if>	
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.wechat,	
+				a.openid,	
+				a.nickname,	
+				a.sex,	
+				a.province,	
+				a.city,	
+				a.country,	
+				a.headimgurl,	
+				a.unionid,	
+				a.cid,	
+				a.count,	
+				a.USER_ID,
+				a.birthday
+		from 
+				tb_wechatinfo a
+	</select>
+	
+	<!-- 列表(部分,根据需要定义) -->
+	<select id="listPart" parameterType="pd" resultType="pd">
+		select	
+				a.nickname,	
+				a.headimgurl										
+		from 
+				tb_wechatinfo a,tb_report b where a.unionid = b.unionid and b.liveid = #{liveid}
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.wechat,	
+				a.openid,	
+				a.nickname,	
+				a.sex,	
+				a.province,	
+				a.city,	
+				a.country,	
+				a.headimgurl,	
+				a.unionid,	
+				a.cid,	
+				a.count,	
+				a.USER_ID,
+				a.birthday
+		from 
+				tb_wechatinfo a
+	</select>
+	
+	<!-- 通过UnionId获取数据 -->
+	<select id="findByUnionId" parameterType="pd" resultType="pd">
+		select 
+			wechat,	
+			openid,	
+			nickname,	
+			sex,	
+			province,	
+			city,	
+			country,	
+			headimgurl,	
+			unionid,	
+			cid,	
+			count,	
+			USER_ID
+		from 
+			tb_wechatinfo
+		where 
+			1 = 1
+		<if test="unionid != null and unionid != ''">
+			and	unionid = #{unionid}
+		</if>	
+	</select>
+	
+	<!-- 通过UnionId获取数据 -->
+	<select id="findByUserIdUnionid" parameterType="pd" resultType="pd">
+		select 
+			a.unionid 
+		from  
+			tb_wechatinfo a, tb_report b
+		where 
+			a.unionid = b.unionid
+		and a.USER_ID = #{USER_ID}
+	</select>
+	<!--查询用户签到列表  -->
+	<select id="listPageReport" parameterType="pd" resultType="pd">
+		select r.renickname , if(r.reheadimgurl='',w.headimgurl,reheadimgurl) as reheadimgurl,r.money
+		 from tb_report r ,
+		 tb_wechatinfo w 
+		 where 
+		r.unionid=w.unionid
+		and 
+		r.liveid = (select l.id  from tb_live l where l.userid=#{pd.USER_ID})
+			
+	</select>
+	
+	<!--查询用户 签到 所以份子钱  -->
+	<select id="findReportMoneyByUserId" parameterType="pd" resultType="pd">
+		select sum(r.money) totalMoney
+		 from tb_report r ,
+		 tb_wechatinfo w 
+		 where 
+		r.unionid=w.unionid
+		and 
+		r.liveid = (select l.id  from tb_live l where l.userid=#{USER_ID})
+	</select>
+	
+	<!--判断app用户是否签到过  -->
+	<select id="judgeReportByUserId" parameterType="pd" resultType="pd">
+		select 
+			w.openid
+		from 
+			tb_report r, tb_wechatinfo w 
+		where 
+			r.unionid=w.unionid
+		and w.USER_ID = #{USER_ID}
+		
+	</select>
+	
+</mapper>

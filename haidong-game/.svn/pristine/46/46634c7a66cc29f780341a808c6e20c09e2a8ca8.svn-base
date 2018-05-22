@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<title>登陆</title>
+</head>
+<style>
+.content {
+	font-size: 14px;
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+}
+
+.item {
+	margin: 10px;
+}
+
+.item input {
+	width: 200px;
+}
+</style>
+<body>
+	<div class="content">
+		<div class="item">
+			<label for="userName">用户名：</label><input type="text" name="userName"
+				id="userName" placeholder="请输入用户名" value="admin" autocomplete="off" />
+		</div>
+		<div class="item">
+			<label for="password">密码：</label><input type="password"
+				name="password" id="password" placeholder="请输入密码" value="123"
+				autocomplete="off" />
+		</div>
+		<div class="item">
+			<button type="" id="login">登陆</button>
+		</div>
+	</div>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script>
+			$('#login').on('click',function (e) {
+				var userName=$.trim($('#userName').val());
+				var password=$.trim($('#password').val());
+				$.ajax({
+					type:"get",
+					url:"/box/login",
+					dataType:'json',
+					data:{
+						userName:userName,
+						password:password
+					},
+					success:function (resp) {
+						alert(resp.msg);
+						alert(resp.token);
+						if(resp.success){
+							//将token存在本地存储，然后跳转到主页面
+							localStorage.setItem('token',resp.token);
+							location.href="main.html";
+						}
+					}
+				});
+				
+				
+			})
+			
+		</script>
+</body>
+</html>
